@@ -79,24 +79,21 @@ Node* include_student(Node* node, Student student) {
   return node;
 }
 
-Node* search_student(Node* node, const char* name) {
-    if (node == NULL) {
-        return NULL; // Aluno não encontrado
-    }
+Node* search_student(Node* node, const char* name[25]) {
+  if (node == NULL) return NULL;
 
-    int comparison = strcmp(name, node->student.name);
+  int comparison = strcmp(name, node->student.name);
 
-    if (comparison == 0) {
-        return node; // Aluno encontrado
-    } else if (comparison < 0) {
-        return search_student(node->left, name); // Procurar na subárvore esquerda
-    } else {
-        return search_student(node->right, name); // Procurar na subárvore direita
-    }
+  if (comparison == 0)
+    return node;
+  else if (comparison < 0)
+    return search_student(node->left, name);
+  else
+    return search_student(node->right, name);
 }
 
 void show_student(Student student) {
-    printf("Registration: %d\nName: %s\nLevel: %s\nLanguage: %s\n",
-           student.registration, student.name, student.class_level, student.language);
+  printf("Registration: %d\nName: %s\nClass Level: %s\nLanguage: %s\n",
+         student.registration, student.name, student.class_level,
+         student.language);
 }
-
