@@ -38,6 +38,6 @@ Node* read_file_and_insert_into_tree(Node* root) {
 
   if (!is_tree_alphabetical(root)) exit(1);
   printf("SYSTEM LOADED SUCCESSFULLY\n");
-  sleep(2);
+  getchar();
   return root;
 }

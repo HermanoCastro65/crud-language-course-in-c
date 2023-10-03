@@ -9,6 +9,7 @@
 void clear_console(void);
 int run_all_test(void);
 void main_menu(void);
+Student add_student_menu(void);
 
 int main(int argc, char* argv[]) {
   if (run_all_tests() != 0) exit(1);
@@ -32,7 +33,7 @@ int run_all_tests() {
   run_test("list_all_students()", test_list_all_students());
   run_test("search_student()", test_search_student());
   run_test("show_student()", test_show_student());
-  
+
   return 0;
 }
 
@@ -40,7 +41,7 @@ void main_menu() {
   Node* students = initialize_tree();
   students = read_file_and_insert_into_tree(students);
 
-  int opcao = 0, sair = 0;
+  int option = 0, get_out = 0;
 
   do {
     clear_console();
@@ -52,9 +53,9 @@ void main_menu() {
     printf("\n(5) Delete student");
     printf("\n(6) Exit");
     printf("\n\nChoose option: ");
-    scanf("%d", &opcao);
+    scanf("%d", &option);
 
-    switch (opcao) {
+    switch (option) {
       case 1:
         printf("\nREGISTERED STUDENTS: \n\n");
         list_all_students(students);
@@ -62,6 +63,8 @@ void main_menu() {
         break;
       case 2:
         printf("\nADD NEW STUDENT: \n\n");
+        Student new_student = add_student_menu();
+        students = include_student(students, new_student);
         getch();
         break;
       case 3:
@@ -78,12 +81,97 @@ void main_menu() {
         break;
       case 6:
         printf("\n(6) EXIT");
-        sair = 1;
+        get_out = 1;
         break;
       default:
         printf("\nINVALID OPTION! \n");
         getch();
-        sair = 0;
+        get_out = 0;
     }
-  } while (!sair);
+  } while (!get_out);
+}
+
+Student add_student_menu() {
+  Student new_student;
+
+  int option = 0, get_out = 0, get_out_language = 0, get_out_level = 0, i = 0,
+      language = 0, level = 0;
+
+  do {
+    clear_console();
+
+    get_out_language = 0;
+    get_out_level = 0;
+
+    printf("\nName: ");
+    scanf("%s", &new_student.name);
+
+    printf("\nAvailable languages: ");
+    for (i = 0; i < 4; i++) printf("\n(%d) %s", i + 1, language_types[i]);
+    printf("\n(5) Cancel\n");
+    printf("\nLanguage: ");
+    scanf("%d", &language);
+
+    switch (language) {
+      case 1:
+        strncpy(new_student.language, language_types[0],
+                sizeof(new_student.language));
+        break;
+      case 2:
+        strncpy(new_student.language, language_types[1],
+                sizeof(new_student.language));
+        break;
+      case 3:
+        strncpy(new_student.language, language_types[2],
+                sizeof(new_student.language));
+        break;
+      case 4:
+        strncpy(new_student.language, language_types[3],
+                sizeof(new_student.language));
+        break;
+      case 5:
+        printf("\nOPERATION CANCELED \n");
+        return;
+      default:
+        printf("\nINVALID OPTION! \n");
+        get_out_language = 1;
+        getch();
+    }
+
+    if (!get_out_language) {
+      printf("\nClass level: ");
+      for (i = 0; i < 3; i++) printf("\n(%d) %s", i + 1, class_level_types[i]);
+      printf("\n(4) Cancel\n");
+      printf("\nLevel: ");
+      scanf("%d", &level);
+
+      switch (level) {
+        case 1:
+          strncpy(new_student.class_level, class_level_types[0],
+                  sizeof(new_student.class_level));
+          break;
+        case 2:
+          strncpy(new_student.class_level, class_level_types[1],
+                  sizeof(new_student.class_level));
+          break;
+        case 3:
+          strncpy(new_student.class_level, class_level_types[2],
+                  sizeof(new_student.class_level));
+          break;
+        case 4:
+          printf("\nOPERATION CANCELED \n");
+          return;
+        default:
+          printf("\nINVALID OPTION! \n");
+          get_out_level = 1;
+          getch();
+      }
+    }
+
+    if (!get_out_language && !get_out_level) {
+      new_student.registration = generate_registration();
+      return new_student;
+    }
+
+  } while (!get_out_language || !get_out_level);
 }
