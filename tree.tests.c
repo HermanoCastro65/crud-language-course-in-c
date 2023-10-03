@@ -225,3 +225,55 @@ int test_list_all_students(void) {
   printf("Test list_all_students_simple: Passed\n");
   return 0;
 }
+
+int test_search_student() {
+  initialize_students_mocks();
+
+  Node* root = initialize_tree();
+
+  root = include_student(root, student1);
+  root = include_student(root, student2);
+  root = include_student(root, student3);
+  root = include_student(root, student4);
+
+  const char* search_name = "Charlie";
+  Node* result = search_student(root, search_name);
+
+  if (result != NULL) {
+    printf("Test search_student: Passed\n");
+    printf("Found student: %s\n", result->student.name);
+  } else
+    printf("Test search_student: Failed\n");
+
+  free_all_students_mocks();
+  free_tree(root);
+
+  return 0;
+}
+
+int test_show_student() {
+  initialize_students_mocks();
+
+  Node* root = initialize_tree();
+
+  root = include_student(root, student1);
+  root = include_student(root, student2);
+  root = include_student(root, student3);
+  root = include_student(root, student4);
+
+  printf("Testing show_student function:\n");
+
+  Node* search = search_student(root, student1.name);
+  show_student(search->student);
+
+  printf("Test show_student: Passed\n");
+
+  free_all_students_mocks();
+  free_tree(root);
+
+  return 0;
+}
+
+
+
+

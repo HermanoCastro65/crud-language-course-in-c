@@ -26,21 +26,16 @@ int generate_registration() {
 }
 
 void list_all_students(Node* node) {
-    if (node == NULL) {
-        return;
-    }
-
-    // Recursivamente, imprime os estudantes na subárvore esquerda
+    if (node == NULL) return;
+    
     list_all_students(node->left);
 
-    // Imprime as informações do aluno no formato especificado
     printf("Student (%d): %s - Level: %s - Language: %s\n",
            node->student.registration,
            node->student.name,
            node->student.class_level,
            node->student.language);
 
-    // Recursivamente, imprime os estudantes na subárvore direita
     list_all_students(node->right);
 }
 
@@ -79,7 +74,7 @@ Node* include_student(Node* node, Student student) {
   return node;
 }
 
-Node* search_student(Node* node, const char* name[25]) {
+Node* search_student(Node* node, const char* name) {
   if (node == NULL) return NULL;
 
   int comparison = strcmp(name, node->student.name);
@@ -93,7 +88,7 @@ Node* search_student(Node* node, const char* name[25]) {
 }
 
 void show_student(Student student) {
-  printf("Registration: %d\nName: %s\nClass Level: %s\nLanguage: %s\n",
+  printf("Registration: %d\nName: %s\nLevel: %s\nLanguage: %s\n",
          student.registration, student.name, student.class_level,
          student.language);
 }
