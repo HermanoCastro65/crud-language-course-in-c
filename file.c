@@ -37,7 +37,7 @@ Node* read_file_and_insert_into_tree(Node* root) {
   fclose(file);
 
   if (!is_tree_alphabetical(root)) exit(1);
-printf("SYSTEM LOADED SUCCESSFULLY\n");
-sleep(2);
+  printf("SYSTEM LOADED SUCCESSFULLY\n");
+  sleep(2);
   return root;
 }
