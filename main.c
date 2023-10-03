@@ -73,6 +73,17 @@ void main_menu() {
         break;
       case 4:
         printf("\nCONSULT STUDENT: \n\n");
+        print_student_names(students);
+        char student_name[25];
+        printf("\nSearch student by name: ");
+        scanf("%s", &student_name);
+        clear_console();
+        printf("\nSTUDENT: \n\n");
+        Node* consult_student = search_student(students, student_name);
+        if (consult_student)
+          show_student(consult_student->student);
+        else
+          printf("NOT FOUND ");
         getch();
         break;
       case 5:
