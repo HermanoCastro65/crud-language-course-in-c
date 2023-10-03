@@ -17,8 +17,8 @@ Student student9;
 Student student10;
 
 void initialize_students_mocks() {
-  Student* student_array = malloc(10 * sizeof(Student));
-  if (!student_array) exit(1);
+  Student* students_array = malloc(10 * sizeof(Student));
+  if (!students_array) exit(1);
 
   student1.registration = generate_registration();
   strncpy(student1.name, "Zoe", sizeof(student1.name));
