@@ -4,6 +4,8 @@
 #include "constants.h"
 #include "tree.h"
 
+extern Student* students_array;
+
 extern Student student1;
 extern Student student2;
 extern Student student3;
