@@ -31,7 +31,7 @@ void list_all_students(Node* node);
 int test_list_all_students(void);
 
 /* Russo DONE*/
-Node* search_student(Node* node, const char* name[25]);
+Node* search_student(Node* node, const char* name);
 int test_search_student(void);
 
 void show_student(Student student);
