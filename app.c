@@ -130,6 +130,7 @@ Student add_student_menu() {
         break;
       case 5:
         printf("\nOPERATION CANCELED \n");
+        memset(&new_student, 0, sizeof(Student));
         return;
       default:
         printf("\nINVALID OPTION! \n");
@@ -159,6 +160,7 @@ Student add_student_menu() {
           break;
         case 4:
           printf("\nOPERATION CANCELED \n");
+          memset(&new_student, 0, sizeof(Student));
           return;
         default:
           printf("\nINVALID OPTION! \n");
