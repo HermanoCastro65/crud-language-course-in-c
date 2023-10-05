@@ -50,8 +50,11 @@ void main_menu() {
       case 2:
         printf("\nADD NEW STUDENT: \n\n");
         Student new_student = add_student_menu();
-        if (new_student.class_level != NULL && new_student.language != NULL && new_student.name != NULL) 
+        if (new_student.registration) {
           students = include_student(students, new_student);
+          printf("\nSTUDENT SUCCESSFULY INCLUDED \n\n");
+        }
+          
         getch();
         break;
       case 3:
@@ -79,7 +82,7 @@ void main_menu() {
         getch();
         break;
       case 6:
-        printf("\n(6) EXIT");
+        printf("\nEXIT\n\n");
         get_out = 1;
         break;
       default:
@@ -130,8 +133,8 @@ Student add_student_menu() {
         break;
       case 5:
         printf("\nOPERATION CANCELED \n");
-        memset(&new_student, 0, sizeof(Student));
-        return;
+        new_student.registration = 0;
+        return new_student;
       default:
         printf("\nINVALID OPTION! \n");
         get_out_language = 1;
@@ -160,8 +163,8 @@ Student add_student_menu() {
           break;
         case 4:
           printf("\nOPERATION CANCELED \n");
-          memset(&new_student, 0, sizeof(Student));
-          return;
+          new_student.registration = 0;
+          return new_student;
         default:
           printf("\nINVALID OPTION! \n");
           get_out_level = 1;
