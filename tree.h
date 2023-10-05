@@ -43,13 +43,12 @@ void print_student_names(Node* node);
 int is_tree_alphabetical(Node* node);
 int test_include_student(void);
 
-/* Sergio - to do: */
 Node* change_student(char* name[25]);
 int test_change_student(void);
 
-Node* delete_student(char* name[25]);
+Node* find_min(Node* node);
+Node* delete_student(Node* node, const char* name);
 int test_delete_student(void);
 
-/* New feature*/
 void show_students_by_language(Node* students, const char* language);
 int test_show_students_by_language(void);

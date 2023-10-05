@@ -290,3 +290,33 @@ int test_show_students_by_language() {
 
   return 0;
 }
+
+int test_delete_student() {
+  initialize_students_mocks();
+  Node* root = initialize_tree();
+
+  root = include_student(root, student1);
+  root = include_student(root, student2);
+  root = include_student(root, student3);
+
+  Node* found_student = search_student(root, "Alice");
+  if (found_student == NULL) {
+    printf("Test delete_student: Student not found\n");
+    return 1;
+  }
+
+  root = delete_student(root, "Alice");
+
+  found_student = search_student(root, "Alice");
+  if (found_student != NULL) {
+    printf("Test delete_student: Failed to delete student\n");
+    return 1;
+  }
+
+  printf("Test delete_student: Passed\n");
+
+  free_all_students_mocks();
+  free_tree(root);
+
+  return 0;
+}

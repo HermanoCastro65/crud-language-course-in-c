@@ -19,7 +19,8 @@ int run_all_tests() {
   run_test("search_student()", test_search_student());
   run_test("show_student()", test_show_student());
   run_test("show_students_by_language()", test_show_students_by_language());
-
+  run_test("delete_student()", test_delete_student());
+	
   return 0;
 }
 

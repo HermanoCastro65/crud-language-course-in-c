@@ -103,3 +103,38 @@ void show_students_by_language(Node* students, const char* language) {
 
   show_students_by_language(students->right, language);
 }
+
+Node* find_min(Node* node) {
+  while (node->left != NULL) {
+    node = node->left;
+  }
+  return node;
+}
+
+Node* delete_student(Node* node, const char* name) {
+  if (node == NULL) return node;
+
+  int comparison = strcmp(name, node->student.name);
+
+  if (comparison < 0)
+    node->left = delete_student(node->left, name);
+  else if (comparison > 0)
+
+    node->right = delete_student(node->right, name);
+  else {
+    if (node->left == NULL) {
+      Node* temp = node->right;
+      free(node);
+      return temp;
+    } else if (node->right == NULL) {
+      Node* temp = node->left;
+      free(node);
+      return temp;
+    }
+
+    Node* temp = find_min(node->right);
+    node->student = temp->student;
+    node->right = delete_student(node->right, temp->student.name);
+  }
+  return node;
+}
