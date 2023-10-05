@@ -17,7 +17,7 @@ void run_test(char* test_name[25], int test) {
   sleep(1);
 }
 
-int test_constants(void) {
+int test_constants() {
   int i;
 
   printf("Class Levels:\n");
@@ -134,7 +134,7 @@ int test_generate_registration() {
 
 int test_create_node() {
   initialize_students_mocks();
-  
+
   Student student = student1;
   Node* left = create_node(student, NULL, NULL);
   Node* right = create_node(student, NULL, NULL);
@@ -144,7 +144,7 @@ int test_create_node() {
     printf("Test create_node: Failed\n");
     return 1;
   }
-  
+
   free_all_students_mocks();
   free_tree(root);
 
@@ -176,9 +176,8 @@ int is_tree_alphabetical(Node* node) {
   return 1;
 }
 
-int test_include_student(void) {
+int test_include_student() {
   initialize_students_mocks();
-
   Node* root = initialize_tree();
 
   root = include_student(root, student1);
@@ -209,7 +208,7 @@ int test_include_student(void) {
   }
 }
 
-int test_list_all_students(void) {
+int test_list_all_students() {
   initialize_students_mocks();
   Node* root = initialize_tree();
 
@@ -228,7 +227,6 @@ int test_list_all_students(void) {
 
 int test_search_student() {
   initialize_students_mocks();
-
   Node* root = initialize_tree();
 
   root = include_student(root, student1);
@@ -253,7 +251,6 @@ int test_search_student() {
 
 int test_show_student() {
   initialize_students_mocks();
-
   Node* root = initialize_tree();
 
   root = include_student(root, student1);
@@ -274,33 +271,22 @@ int test_show_student() {
   return 0;
 }
 
-int test_show_students_by_language(void) {
-    initialize_students_mocks();
+int test_show_students_by_language() {
+  initialize_students_mocks();
+  Node* root = initialize_tree();
 
-    Node* root = initialize_tree();
+  root = include_student(root, student1);
+  root = include_student(root, student2);
+  root = include_student(root, student3);
+  root = include_student(root, student4);
+  root = include_student(root, student5);
 
-    root = include_student(root, student1);
-    root = include_student(root, student2);
-    root = include_student(root, student3);
-    root = include_student(root, student4);
-    root = include_student(root, student5);
+  printf("Testing show_students_by_language function:\n");
+  show_students_by_language(root, "English");
+  printf("\nTest show_students_by_language: Passed\n");
 
-    printf("Testing show_students_by_language function:\n");
-    show_students_by_language(root, "English");
-    printf("\nTest show_students_by_language: Passed\n");
+  free_all_students_mocks();
+  free_tree(root);
 
-    free_all_students_mocks();
-    free_tree(root);
-
-    return 0;
+  return 0;
 }
-
-
-
-
-
-
-
-
-
-

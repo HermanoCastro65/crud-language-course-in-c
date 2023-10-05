@@ -93,9 +93,7 @@ void show_student(Student student) {
 }
 
 void show_students_by_language(Node* students, const char* language) {
-  if (students == NULL) {
-    return;
-  }
+  if (students == NULL) return;
 
   show_students_by_language(students->left, language);
 

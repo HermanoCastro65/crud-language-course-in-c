@@ -56,7 +56,6 @@ void main_menu() {
           students = include_student(students, new_student);
           printf("\nSTUDENT SUCCESSFULY INCLUDED \n\n");
         }
-
         getch();
         break;
       case 3:
@@ -190,7 +189,7 @@ Student add_student_menu() {
   } while (!get_out_language || !get_out_level);
 }
 
-char* chose_language_menu(void) {
+char* chose_language_menu() {
   int language = 0, get_out = 0, i = 0;
 
   for (i = 0; i < 4; i++) printf("\n(%d) %s", i + 1, language_types[i]);
