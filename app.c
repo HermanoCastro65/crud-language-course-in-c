@@ -37,7 +37,8 @@ void main_menu() {
     printf("\n(3) Change student");
     printf("\n(4) Consult student");
     printf("\n(5) Delete student");
-    printf("\n(6) Exit");
+    printf("\n(6) Show students by language");
+    printf("\n(7) Exit");
     printf("\n\nChoose option: ");
     scanf("%d", &option);
 
@@ -83,6 +84,14 @@ void main_menu() {
         getch();
         break;
       case 6:
+        clear_console();
+        printf("\nSHOW STUDENTS BY LANGUAGE: \n\n");
+        printf("\nSearch students by language: ");
+        char * language;
+        scanf("%s", &language);
+        show_students_by_language(students, language);
+        break;
+      case 7:
         printf("\nEXIT\n\n");
         get_out = 1;
         break;

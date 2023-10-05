@@ -285,9 +285,9 @@ int test_show_students_by_language(void) {
     root = include_student(root, student4);
     root = include_student(root, student5);
 
-    printf("Testing show_course_students_by_language function:\n");
+    printf("Testing show_students_by_language function:\n");
     show_students_by_language(root, "English");
-    printf("\nTest show_course_students_by_language: Passed\n");
+    printf("\nTest show_students_by_language: Passed\n");
 
     free_all_students_mocks();
     free_tree(root);
