@@ -44,7 +44,7 @@ void main_menu() {
 
     switch (option) {
       case 1:
-      	clear_console();
+        clear_console();
         printf("\nREGISTERED STUDENTS: \n\n");
         list_all_students(students);
         getch();
@@ -56,7 +56,7 @@ void main_menu() {
           students = include_student(students, new_student);
           printf("\nSTUDENT SUCCESSFULY INCLUDED \n\n");
         }
-          
+
         getch();
         break;
       case 3:
@@ -64,7 +64,7 @@ void main_menu() {
         getch();
         break;
       case 4:
-      	clear_console();
+        clear_console();
         printf("\nCONSULT STUDENT: \n\n");
         print_student_names(students);
         char student_name[25];
@@ -87,9 +87,8 @@ void main_menu() {
         clear_console();
         printf("\nSHOW STUDENTS BY LANGUAGE: \n\n");
         printf("\nSearch students by language: ");
-        char * language = chose_language_menu();
-        if(language)
-          show_students_by_language(students, language);
+        char* language = chose_language_menu();
+        if (language) show_students_by_language(students, language);
         getch();
         break;
       case 7:
@@ -191,36 +190,36 @@ Student add_student_menu() {
   } while (!get_out_language || !get_out_level);
 }
 
-char * chose_language_menu(void) {
+char* chose_language_menu(void) {
   int language = 0, get_out = 0, i = 0;
 
-    for (i = 0; i < 4; i++) printf("\n(%d) %s", i + 1, language_types[i]);
-    printf("\n\nLanguage: ");
-    scanf("%d", &language);
+  for (i = 0; i < 4; i++) printf("\n(%d) %s", i + 1, language_types[i]);
+  printf("\n\nLanguage: ");
+  scanf("%d", &language);
 
-    switch (language) {
-      case 1:
-        clear_console();
-        printf("\nLANGUAGE: %s\n\n", language_types[0]);
-        return language_types[0]; 
-        break;
-      case 2:
-        clear_console();
-        printf("\nLANGUAGE: %s\n\n", language_types[1]);
-        return language_types[1];
-        break;
-      case 3:
-        clear_console();
-        printf("\nLANGUAGE: %s\n\n", language_types[2]);
-        return language_types[2];
-        break;
-      case 4:
-        clear_console();
-        printf("\nLANGUAGE: %s\n\n", language_types[3]);
-        return language_types[3];
-        break;
-      default:
-        printf("\nINVALID OPTION! \n");
-        return NULL;
-    }
+  switch (language) {
+    case 1:
+      clear_console();
+      printf("\nLANGUAGE: %s\n\n", language_types[0]);
+      return language_types[0];
+      break;
+    case 2:
+      clear_console();
+      printf("\nLANGUAGE: %s\n\n", language_types[1]);
+      return language_types[1];
+      break;
+    case 3:
+      clear_console();
+      printf("\nLANGUAGE: %s\n\n", language_types[2]);
+      return language_types[2];
+      break;
+    case 4:
+      clear_console();
+      printf("\nLANGUAGE: %s\n\n", language_types[3]);
+      return language_types[3];
+      break;
+    default:
+      printf("\nINVALID OPTION! \n");
+      return NULL;
+  }
 }

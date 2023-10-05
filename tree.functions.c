@@ -27,17 +27,15 @@ int generate_registration() {
 }
 
 void list_all_students(Node* node) {
-    if (node == NULL) return;
-    
-    list_all_students(node->left);
+  if (node == NULL) return;
 
-    printf("Student (%d): %s - Level: %s - Language: %s\n",
-           node->student.registration,
-           node->student.name,
-           node->student.class_level,
-           node->student.language);
+  list_all_students(node->left);
 
-    list_all_students(node->right);
+  printf("Student (%d): %s - Level: %s - Language: %s\n",
+         node->student.registration, node->student.name,
+         node->student.class_level, node->student.language);
+
+  list_all_students(node->right);
 }
 
 Node* create_node(Student student, Node* left, Node* right) {
@@ -95,16 +93,15 @@ void show_student(Student student) {
 }
 
 void show_students_by_language(Node* students, const char* language) {
-    if (students == NULL) {
-        return;
-    }
+  if (students == NULL) {
+    return;
+  }
 
-    show_students_by_language(students->left, language);
+  show_students_by_language(students->left, language);
 
-    if (strcmp(students->student.language, language) == 0) 
-          printf("Name: %s - Level: %s - Language: %s\n",
-          students->student.name, students->student.class_level,
-         students->student.language);
-             
-    show_students_by_language(students->right, language);
+  if (strcmp(students->student.language, language) == 0)
+    printf("Name: %s - Level: %s - Language: %s\n", students->student.name,
+           students->student.class_level, students->student.language);
+
+  show_students_by_language(students->right, language);
 }
