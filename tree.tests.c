@@ -274,6 +274,33 @@ int test_show_student() {
   return 0;
 }
 
+int test_show_students_by_language(void) {
+    initialize_students_mocks();
+
+    Node* root = initialize_tree();
+
+    root = include_student(root, student1);
+    root = include_student(root, student2);
+    root = include_student(root, student3);
+    root = include_student(root, student4);
+    root = include_student(root, student5);
+
+    printf("Testing show_course_students_by_language function:\n");
+    show_students_by_language(root, "English");
+    printf("\nTest show_course_students_by_language: Passed\n");
+
+    free_all_students_mocks();
+    free_tree(root);
+
+    return 0;
+}
+
+
+
+
+
+
+
 
 
 

@@ -93,3 +93,18 @@ void show_student(Student student) {
          student.registration, student.name, student.class_level,
          student.language);
 }
+
+void show_students_by_language(Node* students, const char* language) {
+    if (students == NULL) {
+        return;
+    }
+
+    show_students_by_language(students->left, language);
+
+    if (strcmp(students->student.language, language) == 0) 
+          printf("Name: %s - Level: %s - Language: %s\n",
+          students->student.name, students->student.class_level,
+         students->student.language);
+             
+    show_students_by_language(students->right, language);
+}

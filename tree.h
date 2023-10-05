@@ -50,3 +50,6 @@ int test_change_student(void);
 Node* delete_student(char* name[25]);
 int test_delete_student(void);
 
+/* New feature*/
+void show_students_by_language(Node* students, const char* language);
+int test_show_students_by_language(void);
