@@ -80,7 +80,19 @@ void main_menu() {
         getch();
         break;
       case 5:
+        clear_console();
         printf("\nDELETE STUDENT: \n\n");
+        print_student_names(students);
+        char delete_student_name[25];
+        printf("\nDelete student by name: ");
+        scanf("%s", &delete_student_name);
+        Node* search_delete_student = search_student(students, delete_student_name);
+        if(search_delete_student) {
+          students = delete_student(students, delete_student_name);
+          printf("\nSTUDENT DELETED \n\n");
+        }
+        else
+          printf("\nNOT FOUND ");
         getch();
         break;
       case 6:
