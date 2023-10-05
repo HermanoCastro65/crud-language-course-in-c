@@ -1,8 +1,8 @@
 typedef struct student {
   int registration;
   char name[25];
-  char class_level[12];
-  char language[10];
+  char class_level[25];
+  char language[25];
 } Student;
 
 typedef struct tree_node {
