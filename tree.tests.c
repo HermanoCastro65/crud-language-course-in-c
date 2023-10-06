@@ -322,3 +322,28 @@ int test_delete_student() {
 
   return 0;
 }
+
+int test_change_student() {
+  initialize_students_mocks();
+  Node* root = initialize_tree();
+
+  root = include_student(root, student1);
+  root = include_student(root, student2);
+  root = include_student(root, student3);
+
+  Node* search = search_student(root, student3.name);
+
+  root = change_student(root, search, student4);
+
+  if (strcmp(search->student.name, "Yasmine") == 0 &&
+      strcmp(search->student.class_level, class_level_types[1]) == 0 &&
+      strcmp(search->student.language, language_types[0]) == 0)
+    printf("Test change_student: Passed\n");
+  else
+    printf("Test change_student: Failed\n");
+
+  free_all_students_mocks();
+  free_tree(root);
+
+  return 0;
+}

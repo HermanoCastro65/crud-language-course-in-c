@@ -20,8 +20,9 @@ int run_all_tests(char* test_mode) {
   run_test("show_student()", test_show_student(), test_mode);
   run_test("show_students_by_language()", test_show_students_by_language(), test_mode);
   run_test("delete_student()", test_delete_student(), test_mode);
-	
-  clear_console();
+  run_test("change_student()", test_change_student(), test_mode);
+  if(!test_mode) clear_console(); 
+  
   return 0;
 }
 
