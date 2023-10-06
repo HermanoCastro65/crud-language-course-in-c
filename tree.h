@@ -43,7 +43,7 @@ void print_student_names(Node* node);
 int is_tree_alphabetical(Node* node);
 int test_include_student(void);
 
-Node* change_student(char* name[25]);
+Node* change_student(Node* node, Node* student, Student change_student);
 int test_change_student(void);
 
 Node* find_min(Node* node);

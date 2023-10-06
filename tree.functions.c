@@ -138,3 +138,18 @@ Node* delete_student(Node* node, const char* name) {
   }
   return node;
 }
+
+Node* change_student(Node* node, Node* student, Student change_student) {
+  if (node == NULL) return node;
+
+  if (student) {
+    strncpy(student->student.name, change_student.name,
+            sizeof(student->student.name));
+    strncpy(student->student.class_level, change_student.class_level,
+            sizeof(student->student.class_level));
+    strncpy(student->student.language, change_student.language,
+            sizeof(student->student.language));
+  }
+
+  return node;
+}
