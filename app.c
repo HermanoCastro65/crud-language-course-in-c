@@ -61,7 +61,29 @@ void main_menu() {
         getch();
         break;
       case 3:
+      	clear_console();
         printf("\nCHANGE STUDENT: \n\n");
+        print_student_names(students);
+        char change_student_name[25];
+        printf("\nChange student by name: ");
+        scanf("%s", &change_student_name);
+        clear_console();
+        printf("\nSTUDENT: \n\n");
+        Node* consult_change_student = search_student(students, change_student_name);
+        if (consult_change_student) {
+          show_student(consult_change_student->student);
+          printf("\nCHANGE STUDENT \n\n");
+          getch();
+          int current_registration = consult_change_student->student.registration;
+          Student change_student_informations = add_student_menu();
+          if (change_student_informations.registration) {
+          	change_student_informations.registration = current_registration;
+            students = change_student(students, consult_change_student,
+                                      change_student_informations);
+            printf("\nSTUDENT SUCCESSFULY CHANGED \n\n");
+          }
+        } else
+          printf("NOT FOUND ");
         getch();
         break;
       case 4:
