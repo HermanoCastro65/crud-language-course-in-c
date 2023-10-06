@@ -6,21 +6,22 @@
 
 void clear_console() { system("cls"); }
 
-int run_all_tests() {
+int run_all_tests(char* test_mode) {
   printf("\nRUNING ALL TESTS: \n\n");
-  run_test("constants", test_constants());
-  run_test("is_empty()", test_is_empty());
-  run_test("initialize_tree()", test_initialize_tree());
-  run_test("free_tree()", test_free_tree());
-  run_test("generate_registration()", test_generate_registration());
-  run_test("create_node()", test_create_node());
-  run_test("include_student()", test_include_student());
-  run_test("list_all_students()", test_list_all_students());
-  run_test("search_student()", test_search_student());
-  run_test("show_student()", test_show_student());
-  run_test("show_students_by_language()", test_show_students_by_language());
-  run_test("delete_student()", test_delete_student());
+  run_test("constants", test_constants(), test_mode);
+  run_test("is_empty()", test_is_empty(), test_mode);
+  run_test("initialize_tree()", test_initialize_tree(), test_mode);
+  run_test("free_tree()", test_free_tree(), test_mode);
+  run_test("generate_registration()", test_generate_registration(), test_mode);
+  run_test("create_node()", test_create_node(), test_mode);
+  run_test("include_student()", test_include_student(), test_mode);
+  run_test("list_all_students()", test_list_all_students(), test_mode);
+  run_test("search_student()", test_search_student(), test_mode);
+  run_test("show_student()", test_show_student(), test_mode);
+  run_test("show_students_by_language()", test_show_students_by_language(), test_mode);
+  run_test("delete_student()", test_delete_student(), test_mode);
 	
+  clear_console();
   return 0;
 }
 

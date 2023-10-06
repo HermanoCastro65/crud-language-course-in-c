@@ -11,7 +11,7 @@ typedef struct tree_node {
   struct tree_node* left;
 } Node;
 
-void run_test(char* test_name[25], int test);
+void run_test(char* test_name[25], int test, char* test_mode);
 
 int is_empty(Node* node);
 int test_is_empty(void);

@@ -7,14 +7,16 @@
 
 int test_number = 0;
 
-void run_test(char* test_name[25], int test) {
+void run_test(char* test_name[25], int test, char* test_mode) {
   test_number++;
   printf("\nTEST %d -> %s ", test_number, test_name);
   if (test == 0)
     printf(
         "run with out problems\n\n - - - - - - - - - - - - - - - - - - - - - - "
         "- - - - - - - - - \n\n");
-  sleep(1);
+  
+  if(test_mode)
+    sleep(1);
 }
 
 int test_constants() {
