@@ -1,3 +1,81 @@
+# Language Course Management System
+
+### Descrição do Projeto
+O "Language Course Management System" é um sistema de gerenciamento de cursos de idiomas que permite ao usuário criar, visualizar, editar e excluir informações sobre estudantes matriculados nos cursos de idiomas. O sistema é baseado em uma árvore binária de pesquisa que armazena os dados dos alunos de forma organizada.
+
+### Funcionalidades Principais
+- **Inserir Aluno**: Adicione novos alunos ao sistema com informações detalhadas, como nome, nível de classe e idioma.
+- **Listar Todos os Alunos**: Exiba uma lista de todos os alunos em - ordem alfabética.
+- **Listar Alunos por Idioma**: Exiba uma lista de alunos que estudam em um idioma específico.
+- **Editar Aluno**: Atualize as informações de um aluno existente.
+- **Excluir Aluno**: Remova um aluno da lista de matrículas.
+
+### Tecnologias Utilizadas
+- Linguagem de Programação: C
+- Estruturas de Dados: Árvore Binária de Pesquisa
+- Bibliotecas: Stdio, Stdlib, String
+
+### Como Usar
+
+1. Clone o repositório para sua máquina local:
+
+```shell
+git clone https://github.com/HermanoCastro65/crud-language-course-in-c.git
+```
+
+2. Compile o código-fonte:
+Navegue até o diretório onde você clonou o repositório e compile o código. Suponhamos que o código-fonte esteja em um arquivo chamado main.c.
+
+```shell
+cd crud-language-course-in-c
+gcc app.c constants.c file.c main.c mocks.c tree.functions.c tree.tests.c -o language_course_management_system 
+```
+
+Isso compilará o código e gerará um executável chamado system.
+
+3. Execute o programa:
+
+Agora você pode executar o programa compilado.
+
+```shell
+./language_course_management_system
+```
+O programa deve ser executado, e você poderá começar a usá-lo para gerenciar os alunos matriculados em cursos de idiomas.
+
+Para utilizar o "test mode" execute o seguinte comando.
+
+```shell
+./language_course_management_system -test
+```
+Este comando permite a vizualização de execução dos testes antes de iniciar o sistema.
+
+Certifique-se de ter um ambiente de desenvolvimento C/C++ configurado em seu sistema para compilar o código. Se você estiver usando um sistema operacional diferente ou uma IDE específica, os comandos podem variar. Certifique-se de ajustar os comandos conforme necessário.
+
+### Exemplos de Uso
+```c
+// Adicione um novo aluno
+Student student = {generate_registration(), "Alice", class_level_types[1], language_types[0]};
+root = include_student(root, student);
+
+// Liste todos os alunos
+list_all_students(root);
+
+// Liste alunos que estudam em um idioma específico
+show_course_students_by_language(root, "English");
+
+// Edite as informações de um aluno
+Node* studentToEdit = search_student(root, "Alice");
+Student updatedStudent = {studentToEdit->student.registration, "Alicia", class_level_types[2], language_types[1]};
+root = change_student(root, studentToEdit, updatedStudent);
+
+// Exclua um aluno
+root = delete_student(root, "Alicia");
+```
+
+### Licença
+Este projeto está licenciado sob a Licença MIT - consulte o arquivo LICENSE para obter detalhes.
+
+
 # Crud Language Course Documentation
 
 ## Índice
