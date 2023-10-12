@@ -72,10 +72,6 @@ root = change_student(root, studentToEdit, updatedStudent);
 root = delete_student(root, "Alicia");
 ```
 
-### Licença
-Este projeto está licenciado sob a Licença MIT - consulte o arquivo LICENSE para obter detalhes.
-
-
 # Crud Language Course Documentation
 
 ## Índice
