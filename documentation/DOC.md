@@ -4,8 +4,34 @@
 * [Mocks](#Mocks)
 * [Constants](#Constants)
 
-### Mocks
+## Mocks
 - **mocks.h**
+
+```c
+#ifndef MOCKS_H
+#define MOCKS_H
+
+#include "constants.h"
+#include "tree.h"
+
+extern Student* students_array;
+
+extern Student student1;
+extern Student student2;
+extern Student student3;
+extern Student student4;
+extern Student student5;
+extern Student student6;
+extern Student student7;
+extern Student student8;
+extern Student student9;
+extern Student student10;
+
+void initialize_students_mocks(void);
+void free_all_students_mocks(void);
+
+#endif
+```
 
 Esse código é um arquivo de cabeçalho (header file) em C que faz parte de um programa que lida com informações de estudantes (students) e cria "mocks" (dados fictícios) para fins de teste e desenvolvimento. Vou explicar as partes-chave deste código:
 
@@ -25,6 +51,117 @@ Em resumo, este arquivo de cabeçalho "mocks.h" é uma parte importante do progr
 
 - **mocks.c**
 
+```c
+#include <stdlib.h>
+#include <string.h>
+
+#include "mocks.h"
+
+Student* students_array;
+
+Student student1;
+Student student2;
+Student student3;
+Student student4;
+Student student5;
+Student student6;
+Student student7;
+Student student8;
+Student student9;
+Student student10;
+
+void initialize_students_mocks() {
+  Student* students_array = malloc(10 * sizeof(Student));
+  if (!students_array) exit(1);
+
+  student1.registration = generate_registration();
+  strncpy(student1.name, "Zoe", sizeof(student1.name));
+  strncpy(student1.class_level, class_level_types[0],
+          sizeof(student1.class_level));
+  strncpy(student1.language, language_types[2], sizeof(student1.language));
+  students_array[0] = student1;
+
+  student2.registration = generate_registration();
+  strncpy(student2.name, "Alice", sizeof(student2.name));
+  strncpy(student2.class_level, class_level_types[2],
+          sizeof(student2.class_level));
+  strncpy(student2.language, language_types[0], sizeof(student2.language));
+  students_array[1] = student2;
+
+  student3.registration = generate_registration();
+  strncpy(student3.name, "Charlie", sizeof(student3.name));
+  strncpy(student3.class_level, class_level_types[1],
+          sizeof(student3.class_level));
+  strncpy(student3.language, language_types[2], sizeof(student3.language));
+  students_array[2] = student3;
+
+  student4.registration = generate_registration();
+  strncpy(student4.name, "Yasmine", sizeof(student4.name));
+  strncpy(student4.class_level, class_level_types[1],
+          sizeof(student4.class_level));
+  strncpy(student4.language, language_types[0], sizeof(student4.language));
+  students_array[3] = student4;
+
+  student5.registration = generate_registration();
+  strncpy(student5.name, "Anna", sizeof(student5.name));
+  strncpy(student5.class_level, class_level_types[0],
+          sizeof(student5.class_level));
+  strncpy(student5.language, language_types[1], sizeof(student5.language));
+  students_array[4] = student5;
+
+  student6.registration = generate_registration();
+  strncpy(student6.name, "Bob", sizeof(student6.name));
+  strncpy(student6.class_level, class_level_types[1],
+          sizeof(student6.class_level));
+  strncpy(student6.language, language_types[3], sizeof(student6.language));
+  students_array[5] = student6;
+
+  student7.registration = generate_registration();
+  strncpy(student7.name, "Catherine", sizeof(student7.name));
+  strncpy(student7.class_level, class_level_types[2],
+          sizeof(student7.class_level));
+  strncpy(student7.language, language_types[0], sizeof(student7.language));
+  students_array[6] = student7;
+
+  student8.registration = generate_registration();
+  strncpy(student8.name, "Henry", sizeof(student8.name));
+  strncpy(student8.class_level, class_level_types[2],
+          sizeof(student8.class_level));
+  strncpy(student8.language, language_types[1], sizeof(student8.language));
+  students_array[7] = student8;
+
+  student9.registration = generate_registration();
+  strncpy(student9.name, "Xander", sizeof(student9.name));
+  strncpy(student9.class_level, class_level_types[1],
+          sizeof(student9.class_level));
+  strncpy(student9.language, language_types[1], sizeof(student9.language));
+  students_array[8] = student9;
+
+  student10.registration = generate_registration();
+  strncpy(student10.name, "Zach", sizeof(student10.name));
+  strncpy(student10.class_level, class_level_types[2],
+          sizeof(student10.class_level));
+  strncpy(student10.language, language_types[3], sizeof(student10.language));
+  students_array[9] = student10;
+}
+
+void free_all_students_mocks() {
+  memset(&student1, 0, sizeof(Student));
+  memset(&student2, 0, sizeof(Student));
+  memset(&student3, 0, sizeof(Student));
+  memset(&student4, 0, sizeof(Student));
+  memset(&student5, 0, sizeof(Student));
+  memset(&student6, 0, sizeof(Student));
+  memset(&student7, 0, sizeof(Student));
+  memset(&student8, 0, sizeof(Student));
+  memset(&student9, 0, sizeof(Student));
+  memset(&student10, 0, sizeof(Student));
+
+  free(students_array);
+}
+
+```
+
 Este é um arquivo de código-fonte em C que define funções para inicializar e liberar mocks (dados fictícios) de estudantes. Vou explicar o código passo a passo:
 
 1. **`#include <stdlib.h>`** e **`#include <string.h>`** : Estas linhas incluem os cabeçalhos padrão da biblioteca C para funções relacionadas à alocação de memória dinâmica e manipulação de strings.
@@ -43,9 +180,21 @@ Este é um arquivo de código-fonte em C que define funções para inicializar e
 
 Em resumo, esse arquivo de código "mocks.c" contém as implementações de funções relacionadas à criação e liberação de dados fictícios de estudantes. Esses dados fictícios são usados para testar e simular informações de estudantes em um programa C.
 
-### Constants
+## Constants
 
 - **constants.h**
+
+```c
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+extern const char* class_level_types[];
+extern const char* language_types[];
+
+int test_constants(void);
+
+#endif
+```
 
 Este é um arquivo de cabeçalho (header) em C chamado "constants.h" que define constantes e protótipos de funções relacionadas a constantes. Vou explicar o código passo a passo:
 
@@ -64,6 +213,13 @@ Este é um arquivo de cabeçalho (header) em C chamado "constants.h" que define 
 Em resumo, esse arquivo de cabeçalho "constants.h" define constantes globais para tipos de nível de classe e tipos de idioma, bem como o protótipo de uma função de teste relacionada a essas constantes. Ele é projetado para ser incluído em outros arquivos de código que precisam dessas constantes em seus programas.
 
 - **constans.c**
+
+```c
+#include "constants.h"
+
+const char* class_level_types[] = {"Beginner", "Intermediate", "Advanced"};
+const char* language_types[] = {"English", "Spanish", "French", "Italian"};
+```
 
 O código que você forneceu é um exemplo de definição de constantes globais para tipos de nível de classe e tipos de idioma. Vou explicar o código passo a passo:
 
