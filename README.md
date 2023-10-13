@@ -436,12 +436,12 @@ O cabeçalho do arquivo [tree.functions.c](https://github.com/HermanoCastro65/cr
 
 Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as funções implementadas em [tree.functions.c](https://github.com/HermanoCastro65/crud-language-course-in-c/blob/creating-documentation/tree.functions.c) tenham acesso a todas as funcionalidades e estruturas definidas no projeto. Isso permite que o código seja organizado em módulos e use as bibliotecas padrão sempre que necessário para o funcionamento correto do programa.
 
-- **Functions**
+- **Functions:**
 
 * [is_empty](#is_empty)
 * [initialize_tree](#initialize_tree)
 * [free_tree](#free_tree)
-
+* [initialize_random_seed](#initialize_random_seed)
 
 1. ### is_empty
 A função is_empty é uma função simples que verifica se a árvore (ou subárvore) representada por um nó é vazia, ou seja, se não contém nenhum aluno. A função recebe como argumento um ponteiro para um nó (do tipo **`Node`**) e retorna um valor inteiro (int). O funcionamento da função é explicado da seguinte forma:
@@ -477,3 +477,15 @@ Aqui está o funcionamento da função:
 A recursão continua até que todos os nós da árvore tenham sido visitados e desalocados. Assim, a função libera a memória de todos os nós da árvore, garantindo que não ocorra vazamento de memória.
 
 Essa função é fundamental para a liberação de recursos após o uso de uma árvore de alunos e ajuda a prevenir vazamentos de memória, especialmente quando a árvore precisa ser destruída ou quando você deseja reutilizar a estrutura.
+
+4. ### initialize_random_seed
+
+A função **`initialize_random_seed`** é responsável por inicializar a semente do gerador de números pseudoaleatórios. Nesse caso, ela utiliza a função **`srand`** da biblioteca padrão C para definir a semente do gerador de números pseudoaleatórios com base no tempo atual. Aqui está como a função funciona:
+
+- **`srand`** é uma função que recebe um valor inteiro (semente) como argumento. Essa semente é usada pelo gerador de números pseudoaleatórios para iniciar sua sequência de números.
+
+- **`time(NULL)`** é uma função que retorna o número de segundos desde uma data específica (normalmente, 1º de janeiro de 1970, conhecida como "época"). Ela é uma forma comum de obter um valor que muda com o tempo.
+
+- **`srand(time(NULL))`** define a semente do gerador de números pseudoaleatórios como o número de segundos desde a época. Isso significa que a sequência de números gerados pelo gerador será diferente cada vez que o programa for executado, a menos que a semente seja definida manualmente.
+
+Essa função é frequentemente usada para inicializar a semente do gerador de números pseudoaleatórios quando se deseja obter sequências de números aleatórios diferentes em diferentes execuções do programa. Ela é especialmente útil em casos nos quais a aleatoriedade é necessária, como para criar dados de teste ou simulações.
