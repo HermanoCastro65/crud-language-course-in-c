@@ -77,6 +77,9 @@ root = delete_student(root, "Alicia");
 ## Índice
 * [Mocks](#Mocks)
 * [Constants](#Constants)
+* [Tree.h](#Tree.h)
+* [Functions](#Functions)
+* [Tests](#Tests)
 
 ## Mocks
 - **mocks.h**
@@ -306,3 +309,113 @@ O código que você forneceu é um exemplo de definição de constantes globais 
 Essas constantes são declaradas como globais e podem ser acessadas em qualquer parte do código após a inclusão do arquivo de cabeçalho "constants.h". Elas são úteis para armazenar informações que são usadas em vários lugares em seu programa e permitem que você as atualize facilmente em um único local, caso seja necessário fazer alterações futuras.
 
 Note que as constantes são declaradas como ponteiros para strings, e as strings são armazenadas na memória como constantes de caracteres. Portanto, essas constantes não podem ser modificadas em tempo de execução, garantindo que seus valores permaneçam fixos durante a execução do programa.
+
+## Tree.h
+```c
+typedef struct student {
+  int registration;
+  char name[25];
+  char class_level[25];
+  char language[25];
+} Student;
+
+typedef struct tree_node {
+  Student student;
+  struct tree_node* right;
+  struct tree_node* left;
+} Node;
+
+void run_test(char* test_name[25], int test, char* test_mode);
+
+int is_empty(Node* node);
+int test_is_empty(void);
+
+Node* initialize_tree(void);
+int test_initialize_tree(void);
+
+void free_tree(Node* node);
+int test_free_tree();
+
+void initialize_random_seed(void);
+int generate_registration(void);
+int test_generate_registration(void);
+
+void list_all_students(Node* node);
+int test_list_all_students(void);
+
+Node* search_student(Node* node, const char* name);
+int test_search_student(void);
+
+void show_student(Student student);
+int test_search_student(void);
+
+Node* create_node(Student student, Node* left, Node* right);
+int test_create_node(void);
+
+Node* include_student(Node* node, Student student);
+void print_student_names(Node* node);
+int is_tree_alphabetical(Node* node);
+int test_include_student(void);
+
+Node* change_student(Node* node, Node* student, Student change_student);
+int test_change_student(void);
+
+Node* find_min(Node* node);
+Node* delete_student(Node* node, const char* name);
+int test_delete_student(void);
+
+void show_students_by_language(Node* students, const char* language);
+int test_show_students_by_language(void);
+```
+O arquivo "tree.h" contém as declarações das funções e estruturas usadas para manipular uma árvore de estudantes (alunos) matriculados em cursos de idiomas. Aqui está uma explicação do código:
+
+1. **`typedef struct tree_node`** : 
+- Define a estrutura de um nó da árvore, onde cada nó contém informações de um estudante (do tipo **`Student`**), além de ponteiros para os nós à esquerda e à direita na árvore.
+
+2. **`void run_test(char* test_name[25], int test, char* test_mode)`** : 
+- Função que executa um teste específico no programa.
+
+3. **`int is_empty(Node* node)`** :
+- Verifica se a árvore está vazia (sem alunos).
+
+4. **`Node* initialize_tree(void)`** :
+- Inicializa uma árvore vazia e retorna o ponteiro para o nó raiz.
+
+5. **`void free_tree(Node* node)`** :
+- Libera a memória alocada para a árvore, incluindo todos os nós e estudantes.
+
+6. **`void initialize_random_seed(void)`** :
+- Inicializa a semente para geração de números aleatórios.
+
+7. **`int generate_registration(void)`** :
+- Gera um número de registro aleatório para um estudante.
+
+8. **`void list_all_students(Node* node)`** :
+- Exibe na saída padrão os nomes de todos os estudantes na árvore em ordem alfabética.
+
+9. **`Node* search_student(Node* node, const char* name)`** :
+- Procura um estudante pelo nome na árvore e retorna o nó correspondente.
+
+10. **`void show_student(Student student)`** :
+- Exibe os detalhes de um estudante na saída padrão.
+
+11. **`Node* create_node(Student student, Node* left, Node* right)`** :
+- Cria um novo nó com informações do estudante e ponteiros para os nós à esquerda e à direita.
+
+12. **`Node* include_student(Node* node, Student student)`** :
+- Insere um estudante na árvore, mantendo a ordem alfabética.
+
+13. **`Node* change_student(Node* node, Node* student, Student change_student)`** :
+- Altera as informações de um estudante específico na árvore.
+
+14. **`Node* find_min(Node* node)`** :
+- Encontra o nó com o menor nome na árvore.
+
+15. **`Node* delete_student(Node* node, const char* name)`** :
+- Exclui um estudante da árvore.
+
+16. **`void show_students_by_language(Node* students, const char* language`** :
+- Exibe na saída padrão os estudantes que falam uma língua específica.
+
+Cada função possui um teste correspondente (**`int test_function_name(void)`**) que pode ser executado para verificar sua funcionalidade. As funções e testes são essenciais para a manipulação e gerenciamento de alunos em cursos de idiomas.
+
