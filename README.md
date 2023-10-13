@@ -443,6 +443,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [free_tree](#free_tree)
 * [initialize_random_seed](#initialize_random_seed)
 * [generate_registration](#generate_registration)
+* [list_all_students](#list_all_students)
 
 1. ### is_empty
 
@@ -538,3 +539,35 @@ A função generate_registration é usada para gerar números de registro aleat�
 - A função retorna o **`random_number`**, que é um número de registro aleatório no intervalo especificado.
 
 No geral, essa função gera números de registro aleatórios dentro de um intervalo específico para simular registros de estudantes, por exemplo, em um sistema de gerenciamento de cursos. O uso do operador % garante que os números gerados estejam distribuídos uniformemente dentro do intervalo especificado.
+
+6. ### list_all_students
+
+```c
+void list_all_students(Node* node) {
+  if (node == NULL) return;
+
+  list_all_students(node->left);
+
+  printf("Student (%d): %s - Level: %s - Language: %s\n",
+         node->student.registration, node->student.name,
+         node->student.class_level, node->student.language);
+
+  list_all_students(node->right);
+}
+```
+
+A função **`list_all_students`** é uma função de percurso em ordem que percorre uma árvore binária de alunos e imprime as informações de cada aluno em ordem alfabética. Aqui está uma explicação passo a passo de como ela funciona:
+
+- A função recebe um ponteiro para um nó **`Node* node`**. Esse nó representa a raiz da árvore que será percorrida.
+
+- A função começa com uma verificação para saber se o nó atual é nulo (**`node == NULL`**). Se for nulo, significa que a árvore ou subárvore em questão está vazia, e a função retorna imediatamente.
+
+- A função chama **`list_all_students(node->left)`**. Isso faz com que a função percorra recursivamente a subárvore esquerda (com alunos cujos nomes estão em ordem alfabética antes do nó atual).
+
+- Em seguida, a função imprime as informações do aluno no nó atual usando a função **`printf`**. Ela exibe o número de registro, nome, nível e idioma do aluno.
+
+- A função chama **`list_all_students(node->right)`**. Isso faz com que a função percorra recursivamente a subárvore direita (com alunos cujos nomes estão em ordem alfabética após o nó atual).
+
+- O resultado é que a função percorre a árvore binária em ordem alfabética, começando pelos alunos com nomes mais à esquerda e terminando com os alunos com nomes mais à direita.
+
+Essa função é útil para listar todos os alunos em ordem alfabética, permitindo que sejam apresentados de forma organizada e legível. Ela é uma implementação do percurso em ordem de uma árvore binária de pesquisa.
