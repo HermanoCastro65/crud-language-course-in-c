@@ -445,6 +445,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [generate_registration](#generate_registration)
 * [list_all_students](#list_all_students)
 * [create_node](#create_node)
+* [include_student](#include_student)
 
 1. ### is_empty
 
@@ -620,3 +621,39 @@ A função **`create_node`** é responsável por alocar memória para um novo n�
 - A função retorna o novo nó criado, que agora faz parte da árvore binária de alunos.
 
 Essa função é comumente usada ao adicionar novos alunos à árvore binária. Ela garante que um novo nó seja alocado e preenchido corretamente com os dados do aluno, mantendo a estrutura da árvore organizada.
+
+8. ### include_student
+```c
+Node* include_student(Node* node, Student student) {
+  if (!node) return create_node(student, NULL, NULL);
+
+  int comparison = strcmp(student.name, node->student.name);
+
+  if (comparison <= 0)
+    node->left = include_student(node->left, student);
+  else
+    node->right = include_student(node->right, student);
+
+  return node;
+}
+```
+A função **`include_student`** é usada para adicionar um novo aluno à árvore binária de alunos. Aqui está uma explicação passo a passo de como ela funciona:
+
+- A função recebe dois argumentos:
+
+1. **`Node* node`** : Um ponteiro para o nó raiz da árvore na qual o aluno será adicionado.
+2. **`Student student`** : O aluno que será adicionado à árvore.
+
+- Primeiro, a função verifica se o nó atual (**`node`**) é nulo. Se o nó for nulo, significa que chegamos a uma posição vazia na árvore onde o novo aluno pode ser inserido. Nesse caso, a função cria um novo nó (usando a função **`create_node`**) com o aluno fornecido e ponteiros para os filhos à esquerda e à direita definidos como nulos. Em seguida, retorna esse novo nó como a nova raiz da árvore.
+
+- Se o nó atual (**`node`**) não for nulo, a função prossegue para determinar onde o novo aluno deve ser inserido na árvore existente.
+
+- Ela começa comparando o nome do aluno (**`student.name`**) com o nome do aluno no nó atual (**`node->student.name`**) usando a função **`strcmp`**. Isso ajuda a determinar se o novo aluno deve ser colocado à esquerda ou à direita do nó atual.
+
+- Se a comparação resultar em um valor menor ou igual a zero (**`comparison <= 0`**), o novo aluno será inserido no subárvore esquerda do nó atual. A função **`include_student`** é chamada recursivamente com o nó esquerdo (**`node->left`**) como o novo nó raiz e o aluno a ser adicionado.
+
+- Se a comparação resultar em um valor maior que zero, o novo aluno será inserido no subárvore direita do nó atual. A função **`include_student`** é chamada recursivamente com o nó direito (**`node->right`**) como o novo nó raiz e o aluno a ser adicionado.
+
+- A função retorna o nó atual após a inserção do novo aluno. Se o nó raiz não foi modificado, ele retorna o mesmo nó raiz original.
+
+No geral, essa função é responsável por percorrer a árvore e encontrar o local correto para adicionar o novo aluno, mantendo a ordem alfabética dos nomes dos alunos na árvore. Ela também lida com a criação de um novo nó, se necessário, e garante que a estrutura da árvore permaneça organizada.
