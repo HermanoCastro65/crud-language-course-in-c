@@ -446,6 +446,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [list_all_students](#list_all_students)
 * [create_node](#create_node)
 * [include_student](#include_student)
+* [search_student](#search_student)
 
 1. ### is_empty
 
@@ -657,3 +658,41 @@ A função **`include_student`** é usada para adicionar um novo aluno à árvor
 - A função retorna o nó atual após a inserção do novo aluno. Se o nó raiz não foi modificado, ele retorna o mesmo nó raiz original.
 
 No geral, essa função é responsável por percorrer a árvore e encontrar o local correto para adicionar o novo aluno, mantendo a ordem alfabética dos nomes dos alunos na árvore. Ela também lida com a criação de um novo nó, se necessário, e garante que a estrutura da árvore permaneça organizada.
+
+9. ### search_student
+
+```c
+Node* search_student(Node* node, const char* name) {
+  if (node == NULL) return NULL;
+
+  int comparison = strcmp(name, node->student.name);
+
+  if (comparison == 0)
+    return node;
+  else if (comparison < 0)
+    return search_student(node->left, name);
+  else
+    return search_student(node->right, name);
+}
+```
+
+A função **`search_student`** é usada para encontrar um aluno na árvore binária com base no nome do aluno. Aqui está uma explicação passo a passo de como ela funciona:
+
+- A função recebe dois argumentos:
+
+1. **`Node* node`** : Um ponteiro para o nó raiz da árvore onde a pesquisa será realizada.
+2. **`const char* name`** : O nome do aluno que está sendo procurado.
+
+- Primeiro, a função verifica se o nó atual (**`node`**) é nulo. Se o nó for nulo, significa que a árvore não contém o aluno com o nome pesquisado, e a função retorna **`NULL`** para indicar que o aluno não foi encontrado.
+
+- Se o nó atual (**`node`**) não for nulo, a função procede a comparar o nome do aluno no nó atual (**`node->student.name`**) com o nome fornecido (**`name`**) usando a função **`strcmp`**.
+
+- Se a comparação resultar em um valor igual a zero (**`comparison == 0`**), isso significa que o nome do aluno no nó atual é igual ao nome pesquisado. Nesse caso, a função retorna o próprio nó atual, representando o aluno encontrado na árvore.
+
+- Se a comparação resultar em um valor menor que zero, isso significa que o nome pesquisado é alfabeticamente menor do que o nome do aluno no nó atual. A função **`search_student`** é chamada recursivamente no nó à esquerda (**`node->left`**) para continuar a pesquisa na subárvore esquerda.
+
+- Se a comparação resultar em um valor maior que zero, isso significa que o nome pesquisado é alfabeticamente maior do que o nome do aluno no nó atual. A função **`search_student`** é chamada recursivamente no nó à direita (**`node->right`**) para continuar a pesquisa na subárvore direita.
+
+- A função retorna o nó atual onde o aluno foi encontrado, ou retorna **`NULL`** se o aluno não foi encontrado na árvore.
+
+No geral, essa função é responsável por percorrer a árvore e encontrar um aluno específico com base no nome. Ela utiliza a ordem alfabética dos nomes para direcionar a pesquisa na subárvore esquerda ou direita, conforme necessário.
