@@ -440,6 +440,8 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 
 * [is_empty](#is_empty)
 * [initialize_tree](#initialize_tree)
+* [free_tree](#free_tree)
+
 
 1. ### is_empty
 A função is_empty é uma função simples que verifica se a árvore (ou subárvore) representada por um nó é vazia, ou seja, se não contém nenhum aluno. A função recebe como argumento um ponteiro para um nó (do tipo **`Node`**) e retorna um valor inteiro (int). O funcionamento da função é explicado da seguinte forma:
@@ -459,3 +461,19 @@ A função **`initialize_tree`** é uma função que cria e retorna uma árvore 
 Essa função é útil quando você deseja iniciar uma nova árvore do zero. Quando a árvore é inicializada, ela não contém nenhum aluno. À medida que novos alunos são adicionados à árvore, a estrutura da árvore é construída dinamicamente por meio das funções de inserção, como **`include_student`**. Portanto, a árvore começa como uma raiz nula.
 
 O uso dessa função pode ser o ponto de partida para criar uma nova árvore de alunos. Ela cria a base vazia na qual os alunos serão inseridos posteriormente. Portanto, quando você desejar criar uma nova árvore, pode chamar **`initialize_tree`** para obter uma árvore vazia e, em seguida, começar a adicionar alunos a partir daí.
+
+3. ### free_tree
+
+A função **`free_tree`** é uma função de liberação de memória que é usada para desalocar todos os nós de uma árvore binária de alunos (ou subárvore) e liberar a memória associada a eles. Essa função é recursiva e é usada para garantir que todos os nós da árvore sejam liberados corretamente, incluindo os nós filhos.
+
+Aqui está o funcionamento da função:
+
+- A função recebe um ponteiro para o nó raiz da árvore, chamado **`root`**. Se a árvore estiver vazia (ou seja, o **`root`** é **`NULL`**), a função simplesmente retorna sem fazer nada, pois não há nós a serem liberados.
+
+- Se a árvore não estiver vazia, a função entra na recursão. Ela chama a função **`free_tree`** em cada um dos nós filhos do nó atual, primeiro no nó à esquerda (subárvore esquerda) e depois no nó à direita (subárvore direita). Isso garante que todos os nós da árvore sejam visitados.
+
+- Após chamar **`free_tree`** nos nós filhos, a função executa **`free(root)`** para desalocar o nó atual, ou seja, o nó referenciado pelo ponteiro **`root`**.
+
+A recursão continua até que todos os nós da árvore tenham sido visitados e desalocados. Assim, a função libera a memória de todos os nós da árvore, garantindo que não ocorra vazamento de memória.
+
+Essa função é fundamental para a liberação de recursos após o uso de uma árvore de alunos e ajuda a prevenir vazamentos de memória, especialmente quando a árvore precisa ser destruída ou quando você deseja reutilizar a estrutura.
