@@ -435,3 +435,15 @@ O cabeçalho do arquivo [tree.functions.c](https://github.com/HermanoCastro65/cr
 - **`#include "tree.h"`** : Inclui o cabeçalho do arquivo "tree.h," que contém as declarações das funções e estruturas usadas para manipular a árvore de estudantes.
 
 Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as funções implementadas em [tree.functions.c](https://github.com/HermanoCastro65/crud-language-course-in-c/blob/creating-documentation/tree.functions.c) tenham acesso a todas as funcionalidades e estruturas definidas no projeto. Isso permite que o código seja organizado em módulos e use as bibliotecas padrão sempre que necessário para o funcionamento correto do programa.
+
+1. **is_empty**
+A função is_empty é uma função simples que verifica se a árvore (ou subárvore) representada por um nó é vazia, ou seja, se não contém nenhum aluno. A função recebe como argumento um ponteiro para um nó (do tipo **`Node`**) e retorna um valor inteiro (int). O funcionamento da função é explicado da seguinte forma:
+
+- Ela recebe um nó como argumento (**`Node* node`**), que é um ponteiro para um nó na árvore.
+
+- A função verifica se o ponteiro **`node`** é igual a **`NULL`**. Se for, isso significa que o nó está vazio, e a função retorna 1 (verdadeiro) para indicar que a árvore está vazia.
+
+- Caso o ponteiro **`node`** não seja **`NULL`**, a função retorna 0 (falso) para indicar que a árvore não está vazia.
+
+Essa função é útil para verificar rapidamente se uma árvore está vazia ou não, o que pode ser útil em diversas operações de gerenciamento de árvores, como inserção, exclusão, pesquisa e listagem de elementos. Ela fornece uma verificação simples e eficiente para essa condição.
+
