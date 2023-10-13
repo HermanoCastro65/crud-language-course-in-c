@@ -448,6 +448,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [include_student](#include_student)
 * [search_student](#search_student)
 * [show_student](#show_student)
+* [show_students_by_language](#show_students_by_language)
 
 1. ### is_empty
 
@@ -734,3 +735,33 @@ Language: [idioma do aluno]
 ```
 
 Os valores reais serão preenchidos com os dados específicos do aluno que foram passados como argumento para a função. Isso é útil para visualizar e verificar as informações de um aluno em particular.
+
+11. ### show_students_by_language
+
+```c
+void show_students_by_language(Node* students, const char* language) {
+  if (students == NULL) return;
+
+  show_students_by_language(students->left, language);
+
+  if (strcmp(students->student.language, language) == 0)
+    printf("Name: %s - Level: %s - Language: %s\n", students->student.name,
+           students->student.class_level, students->student.language);
+
+  show_students_by_language(students->right, language);
+}
+```
+
+A função **`show_students_by_language`** percorre uma árvore de alunos (representada pelo nó **`students`**) e exibe informações dos alunos cujo idioma corresponde ao idioma especificado. Aqui está uma explicação passo a passo dessa função:
+
+- **`if (students == NULL) return;`** : Isso é uma verificação para garantir que a função não prossiga se o nó atual (representando um aluno) for nulo. Isso ocorre quando a função atinge uma folha da árvore ou quando a árvore está vazia. Nesse caso, a função retorna sem fazer nada.
+
+- **`show_students_by_language(students->left, language);`** : Aqui, a função é chamada recursivamente para percorrer o ramo esquerdo da árvore (alunos com nomes "menores" de acordo com a ordem alfabética). Isso permite que a função continue a busca por alunos com o idioma desejado em toda a árvore.
+
+- **`if (strcmp(students->student.language, language) == 0) ...`** : Esta condição verifica se o idioma do aluno atual é igual ao idioma especificado. A função **`strcmp`** compara as strings do idioma do aluno e do idioma desejado. Se for igual (retorno zero), a função prossegue com a próxima etapa.
+
+- **`printf("Name: %s - Level: %s - Language: %s\n", ...`** : Se a condição anterior for verdadeira, a função imprime informações sobre o aluno que atende aos critérios, incluindo o nome do aluno, o nível e o idioma, formatados em uma mensagem legível.
+
+- **`show_students_by_language(students->right, language);`** : Após exibir as informações do aluno, a função é chamada recursivamente para percorrer o ramo direito da árvore (alunos com nomes "maiores" de acordo com a ordem alfabética), permitindo que a busca continue na parte direita da árvore.
+
+A função **`show_students_by_language`** é útil para localizar e exibir informações específicas dos alunos com base em critérios de idioma. Por exemplo, ao chamar **`show_students_by_language(root, "English");`**, a função exibirá os detalhes de todos os alunos que têm "English" como seu idioma na árvore de alunos.
