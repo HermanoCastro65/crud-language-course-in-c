@@ -450,6 +450,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [show_student](#show_student)
 * [show_students_by_language](#show_students_by_language)
 * [find_min](#find_min)
+* [delete_student](#delete_student)
 
 1. ### is_empty
 
@@ -791,3 +792,55 @@ A função **`find_min`** é usada para encontrar o nó com o valor mínimo (o a
 - Quando o nó com o valor mínimo é encontrado, a função retorna esse nó.
 
 Em resumo, a função **`find_min`** percorre a árvore binária de busca da raiz até o nó mais à esquerda, encontrando assim o nó com o valor mínimo. Essa função é comumente usada em operações de exclusão em árvores binárias de busca para encontrar o nó que deve ser removido quando não possui filhos à esquerda.
+
+13. ### delete_student
+
+```c
+Node* delete_student(Node* node, const char* name) {
+  if (node == NULL) return node;
+
+  int comparison = strcmp(name, node->student.name);
+
+  if (comparison < 0)
+    node->left = delete_student(node->left, name);
+  else if (comparison > 0)
+
+    node->right = delete_student(node->right, name);
+  else {
+    if (node->left == NULL) {
+      Node* temp = node->right;
+      free(node);
+      return temp;
+    } else if (node->right == NULL) {
+      Node* temp = node->left;
+      free(node);
+      return temp;
+    }
+
+    Node* temp = find_min(node->right);
+    node->student = temp->student;
+    node->right = delete_student(node->right, temp->student.name);
+  }
+  return node;
+}
+```
+
+A função **`delete_student`** é usada para excluir um aluno da árvore binária de busca, com base no nome do aluno. Aqui está como a função funciona:
+
+- A função recebe um nó da árvore e o nome do aluno que se deseja excluir.
+
+- Se o nó passado for nulo (o que pode acontecer quando a busca chega a uma folha da árvore sem encontrar o aluno desejado), a função retorna nulo.
+
+- A função compara o nome do aluno atual (no nó atual) com o nome que deseja-se excluir. Com base na comparação, a função decide se deve continuar a busca à esquerda (se o nome desejado for menor) ou à direita (se o nome desejado for maior).
+
+- Se a comparação indicar que o nó atual contém o aluno a ser excluído (comparação igual a 0), a função inicia o processo de exclusão.
+
+- Se o nó não tiver um filho à esquerda, ele é excluído e substituído por seu filho à direita (se houver um).
+
+- Se o nó não tiver um filho à direita, ele é excluído e substituído por seu filho à esquerda.
+
+- Se o nó tiver ambos os filhos, a função encontra o nó com o valor mínimo na subárvore à direita (usando a função **`find_min`**) e copia o conteúdo desse nó para o nó atual. Em seguida, a função exclui o nó com o valor mínimo na subárvore à direita.
+
+- A função retorna o nó atual, que pode ter sido modificado ou substituído durante o processo de exclusão.
+
+Portanto, a função **`delete_student`** permite excluir um aluno com base no nome, mantendo a propriedade da árvore binária de busca. Ela lida com três casos diferentes: se o nó a ser excluído não tiver filhos, se tiver apenas um filho e se tiver dois filhos.
