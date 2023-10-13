@@ -420,3 +420,18 @@ O arquivo "tree.h" contém as declarações das funções e estruturas usadas pa
 
 Cada função possui um teste correspondente (**`int test_function_name(void)`**) que pode ser executado para verificar sua funcionalidade. As funções e testes são essenciais para a manipulação e gerenciamento de alunos em cursos de idiomas.
 
+## Functions
+
+O cabeçalho do arquivo [tree.functions.c](https://github.com/HermanoCastro65/crud-language-course-in-c/blob/creating-documentation/tree.functions.c) descreve as inclusões de bibliotecas e cabeçalhos de outros arquivos necessários para a implementação das funções relacionadas à árvore de estudantes. Aqui está uma explicação detalhada do cabeçalho:
+
+- **`#include <stdio.h>`** : Inclui a biblioteca padrão de entrada e saída em C, que fornece funções para entrada (leitura) e saída (escrita) de dados.
+
+- **`#include <stdlib.h>`** : Inclui a biblioteca padrão em C, que contém funções para alocação de memória, controle de processos e outras operações essenciais.
+
+- **`#include <string.h>`** : Inclui a biblioteca padrão em C para manipulação de cadeias de caracteres, oferecendo funções para copiar, comparar e modificar strings.
+
+- **`#include "constants.h"`** : Inclui o cabeçalho do arquivo "constants.h," que contém as constantes usadas no programa, como os tipos de níveis de classe e idiomas.
+
+- **`#include "tree.h"`** : Inclui o cabeçalho do arquivo "tree.h," que contém as declarações das funções e estruturas usadas para manipular a árvore de estudantes.
+
+Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as funções implementadas em [tree.functions.c](https://github.com/HermanoCastro65/crud-language-course-in-c/blob/creating-documentation/tree.functions.c) tenham acesso a todas as funcionalidades e estruturas definidas no projeto. Isso permite que o código seja organizado em módulos e use as bibliotecas padrão sempre que necessário para o funcionamento correto do programa.
