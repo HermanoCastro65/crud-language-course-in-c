@@ -442,6 +442,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [initialize_tree](#initialize_tree)
 * [free_tree](#free_tree)
 * [initialize_random_seed](#initialize_random_seed)
+* [generate_registration](#generate_registration)
 
 1. ### is_empty
 A função is_empty é uma função simples que verifica se a árvore (ou subárvore) representada por um nó é vazia, ou seja, se não contém nenhum aluno. A função recebe como argumento um ponteiro para um nó (do tipo **`Node`**) e retorna um valor inteiro (int). O funcionamento da função é explicado da seguinte forma:
@@ -489,3 +490,19 @@ A função **`initialize_random_seed`** é responsável por inicializar a sement
 - **`srand(time(NULL))`** define a semente do gerador de números pseudoaleatórios como o número de segundos desde a época. Isso significa que a sequência de números gerados pelo gerador será diferente cada vez que o programa for executado, a menos que a semente seja definida manualmente.
 
 Essa função é frequentemente usada para inicializar a semente do gerador de números pseudoaleatórios quando se deseja obter sequências de números aleatórios diferentes em diferentes execuções do programa. Ela é especialmente útil em casos nos quais a aleatoriedade é necessária, como para criar dados de teste ou simulações.
+
+5. ### generate_registration
+
+A função generate_registration é usada para gerar números de registro aleatórios que normalmente têm cinco dígitos. Aqui está uma explicação passo a passo de como ela funciona:
+
+- **`int lower_bound`** e **`int upper_bound`** são variáveis que definem o intervalo de valores entre os quais você deseja gerar números de registro aleatórios. Neste caso, **`lower_bound`** é definido como 10.000 e **`upper_bound`** é definido como 99.999. Isso garante que os números gerados estejam no intervalo entre 10.000 e 99.999.
+
+- **`int random_number é uma variável que receberá o número de registro aleatório gerado.
+
+- **`(rand() % (upper_bound - lower_bound + 1))`** é uma expressão que usa a função **`rand()`** para gerar um número pseudoaleatório, e o operador % (módulo) é usado para limitar esse número ao intervalo de valores entre **`lower_bound`** e **`upper_bound`**.
+
+- **`+ lower_bound`** é adicionado ao número gerado para garantir que ele esteja dentro do intervalo desejado. Isso desloca a faixa de valores do número aleatório de volta ao intervalo desejado entre 10.000 e 99.999.
+
+- A função retorna o **`random_number`**, que é um número de registro aleatório no intervalo especificado.
+
+No geral, essa função gera números de registro aleatórios dentro de um intervalo específico para simular registros de estudantes, por exemplo, em um sistema de gerenciamento de cursos. O uso do operador % garante que os números gerados estejam distribuídos uniformemente dentro do intervalo especificado.
