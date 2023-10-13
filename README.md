@@ -447,6 +447,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [create_node](#create_node)
 * [include_student](#include_student)
 * [search_student](#search_student)
+* [show_student](#show_student)
 
 1. ### is_empty
 
@@ -696,3 +697,40 @@ A função **`search_student`** é usada para encontrar um aluno na árvore bin�
 - A função retorna o nó atual onde o aluno foi encontrado, ou retorna **`NULL`** se o aluno não foi encontrado na árvore.
 
 No geral, essa função é responsável por percorrer a árvore e encontrar um aluno específico com base no nome. Ela utiliza a ordem alfabética dos nomes para direcionar a pesquisa na subárvore esquerda ou direita, conforme necessário.
+
+10. ### show_student
+
+```c
+void show_student(Student student) {
+  printf("Registration: %d\nName: %s\nLevel: %s\nLanguage: %s\n",
+         student.registration, student.name, student.class_level,
+         student.language);
+}
+```
+
+A função **`show_student`** é responsável por exibir os detalhes de um aluno no console. Ela recebe uma estrutura **`Student`** como argumento e imprime as informações do aluno, como número de registro, nome, nível e idioma, formatadas em uma mensagem legível. Aqui está uma explicação dos elementos usados na função:
+
+- **`void show_student(Student student)`** : Este é o cabeçalho da função que declara que ela não retorna um valor (tipo **`void`**) e recebe um parâmetro do tipo **`Student`** chamado student, que representa as informações do aluno a serem exibidas.
+
+- **`printf("Registration: %d\nName: %s\nLevel: %s\nLanguage: %s\n", ...)`** : Esta linha usa a função **`printf`** para formatar e exibir as informações do aluno. Os marcadores de posição **`%d`**, **`%s`** e **`%s`** são usados para inserir os valores das propriedades do aluno na mensagem.
+
+- **`student.registration`** : Essa parte do código insere o número de registro do aluno na mensagem de saída, substituindo **`%d`**.
+
+- **`student.name`** : Esta parte insere o nome do aluno na mensagem, substituindo **`%s`**.
+
+- **`student.class_level`** : Aqui, o nível do aluno é inserido na mensagem, substituindo outro **`%s`**.
+
+- **`student.language`** : Finalmente, o idioma do aluno é inserido na mensagem, substituindo o último **`%s`**.
+
+Ao chamar a função **`show_student`** e passar uma estrutura **`Student`** como argumento, os detalhes desse aluno específico são exibidos no console, tornando mais fácil visualizar e entender as informações do aluno.
+
+Por exemplo, ao chamar **`show_student(student1);`**, a função exibirá as informações de **`student1`** no seguinte formato:
+
+```cmd
+Registration: [número de registro]
+Name: [nome do aluno]
+Level: [nível do aluno]
+Language: [idioma do aluno]
+```
+
+Os valores reais serão preenchidos com os dados específicos do aluno que foram passados como argumento para a função. Isso é útil para visualizar e verificar as informações de um aluno em particular.
