@@ -878,3 +878,39 @@ A função **`change_student`** é usada para atualizar os campos de um aluno ex
 - Após a atualização, a função retorna o nó raiz original (representado pelo argumento **`node`**) sem fazer nenhuma modificação nele. Isso ocorre porque, em uma árvore binária de busca, a estrutura da árvore não deve ser alterada durante a atualização de um nó específico. Em vez disso, os campos do nó específico são atualizados.
 
 Portanto, a função **`change_student`** permite a atualização dos campos de um aluno na árvore, mas não afeta a estrutura geral da árvore. O nó raiz original é retornado após a atualização.
+
+## Tests
+
+O arquivo [tree.tests.c](https://github.com/HermanoCastro65/crud-language-course-in-c/blob/creating-documentation/tree.tests.c) contém um conjunto de funções de teste que são usadas para verificar o funcionamento correto das funções definidas na árvore binária de busca. Vou explicar cada função individualmente:
+
+1. **`run_test`**: Essa função é usada para executar um teste específico e imprimir o resultado do teste na saída padrão. Ela recebe o nome do teste, um valor de teste (0 para sucesso, 1 para falha) e um modo de teste (que não parece estar sendo usado no código fornecido).
+
+2. **`test_constants`** : Este teste verifica se as constantes **`class_level_types`** e **`language_types`** são definidas corretamente e se seus valores correspondem aos esperados. Qualquer discrepância é relatada como uma falha.
+
+3. **`test_is_empty`** : Verifica se a função **`is_empty`** está funcionando corretamente para um nó vazio e para um nó não vazio. Se a função retornar o resultado esperado, o teste é considerado bem-sucedido.
+
+4. **`test_initialize_tree`** : Verifica se a função **`initialize_tree`** cria uma árvore vazia corretamente.
+
+5. **`test_free_tree`** : Testa a função **`free_tree`** para garantir que ela libere adequadamente a memória associada à árvore. A função cria uma árvore com alguns nós de aluno, chama **`free_tree`** e verifica se a árvore é liberada corretamente.
+
+6. **`test_generate_registration`** : Testa a função **`generate_registration`**, que gera números de registro aleatórios. Verifica se os números gerados estão dentro do intervalo esperado.
+
+7. **`test_create_node`** : Verifica se a função **`create_node`** cria corretamente um novo nó com os valores de aluno, esquerda e direita fornecidos.
+
+8. **`print_student_names`** e **`is_tree_alphabetical`** : Estas funções não são testes individuais, mas são usadas para verificar se a árvore está em ordem alfabética. A função **`print_student_names`** imprime os nomes dos alunos na ordem correta, e **`is_tree_alphabetical`** verifica se a árvore está em ordem.
+
+9. **`test_include_student`** : Testa a função **`include_student`**, que insere alunos na árvore de acordo com a ordem alfabética de seus nomes e verifica se a árvore permanece ordenada após a inserção.
+
+10. **`test_list_all_students`** : Testa a função **`list_all_students`** para listar todos os alunos da árvore.
+
+11. **`test_search_student`** : Verifica se a função **`search_student`** encontra um aluno específico na árvore.
+
+12. **`test_show_student`**: Testa a função **`show_student`** para exibir informações sobre um aluno específico.
+
+13. **`test_show_students_by_language`**: Testa a função **`show_students_by_language`** para mostrar alunos com base no idioma especificado.
+
+14. **`test_delete_student`**: Testa a função **`delete_student`** para remover um aluno da árvore.
+
+15. **`test_change_student`**: Testa a função **`change_student`** para verificar se ela atualiza corretamente os campos de um aluno na árvore.
+
+Essas funções de teste ajudam a garantir que as funções da árvore estejam funcionando conforme o esperado e fornecem feedback sobre o sucesso ou a falha de cada função.
