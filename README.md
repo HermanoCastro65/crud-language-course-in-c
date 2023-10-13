@@ -451,6 +451,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [show_students_by_language](#show_students_by_language)
 * [find_min](#find_min)
 * [delete_student](#delete_student)
+* [change_student](#change_student)
 
 1. ### is_empty
 
@@ -844,3 +845,36 @@ A função **`delete_student`** é usada para excluir um aluno da árvore binár
 - A função retorna o nó atual, que pode ter sido modificado ou substituído durante o processo de exclusão.
 
 Portanto, a função **`delete_student`** permite excluir um aluno com base no nome, mantendo a propriedade da árvore binária de busca. Ela lida com três casos diferentes: se o nó a ser excluído não tiver filhos, se tiver apenas um filho e se tiver dois filhos.
+
+14. ### change_student
+
+```c
+Node* change_student(Node* node, Node* student, Student change_student) {
+  if (node == NULL) return node;
+
+  if (student) {
+    strncpy(student->student.name, change_student.name,
+            sizeof(student->student.name));
+    strncpy(student->student.class_level, change_student.class_level,
+            sizeof(student->student.class_level));
+    strncpy(student->student.language, change_student.language,
+            sizeof(student->student.language));
+  }
+
+  return node;
+}
+```
+
+A função **`change_student`** é usada para atualizar os campos de um aluno existente na árvore binária de busca. Aqui está como a função funciona:
+
+- A função recebe três argumentos: o nó raiz da árvore, o nó do aluno a ser atualizado (ou seja, o nó que representa o aluno que se deseja alterar) e os novos dados do aluno (representados pela estrutura **`change_student`**).
+
+- Primeiro, a função verifica se o nó atual (representado pelo argumento **`node`**) é nulo. Se for nulo, isso significa que a árvore está vazia ou que o aluno que se deseja alterar não foi encontrado na árvore. Nesse caso, a função simplesmente retorna o nó atual (que é nulo).
+
+- Em seguida, a função verifica se o argumento **`student`** é diferente de nulo. Isso é importante porque o aluno que se deseja atualizar deve ser encontrado na árvore antes que qualquer atualização seja realizada.
+
+- Se o nó do aluno a ser atualizado (**`student`**) não for nulo, a função utiliza a função **`strncpy`** para atualizar os campos do aluno com os novos valores fornecidos na estrutura **`change_student`**. Isso significa que os campos de nome, nível de classe e idioma do aluno no nó **`student`** serão atualizados com os valores correspondentes em **`change_student`**.
+
+- Após a atualização, a função retorna o nó raiz original (representado pelo argumento **`node`**) sem fazer nenhuma modificação nele. Isso ocorre porque, em uma árvore binária de busca, a estrutura da árvore não deve ser alterada durante a atualização de um nó específico. Em vez disso, os campos do nó específico são atualizados.
+
+Portanto, a função **`change_student`** permite a atualização dos campos de um aluno na árvore, mas não afeta a estrutura geral da árvore. O nó raiz original é retornado após a atualização.
