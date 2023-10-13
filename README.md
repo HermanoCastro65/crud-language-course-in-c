@@ -445,6 +445,11 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [generate_registration](#generate_registration)
 
 1. ### is_empty
+
+```c
+int is_empty(Node* node) { return node == NULL; }
+```
+
 A função is_empty é uma função simples que verifica se a árvore (ou subárvore) representada por um nó é vazia, ou seja, se não contém nenhum aluno. A função recebe como argumento um ponteiro para um nó (do tipo **`Node`**) e retorna um valor inteiro (int). O funcionamento da função é explicado da seguinte forma:
 
 - Ela recebe um nó como argumento (**`Node* node`**), que é um ponteiro para um nó na árvore.
@@ -457,6 +462,10 @@ Essa função é útil para verificar rapidamente se uma árvore está vazia ou 
 
 2. ### initialize_tree
 
+```c
+Node* initialize_tree() { return NULL; }
+```
+
 A função **`initialize_tree`** é uma função que cria e retorna uma árvore (ou subárvore) vazia. Ela não aloca memória para nenhum nó e, portanto, retorna **`NULL`** para indicar que a árvore está vazia.
 
 Essa função é útil quando você deseja iniciar uma nova árvore do zero. Quando a árvore é inicializada, ela não contém nenhum aluno. À medida que novos alunos são adicionados à árvore, a estrutura da árvore é construída dinamicamente por meio das funções de inserção, como **`include_student`**. Portanto, a árvore começa como uma raiz nula.
@@ -464,6 +473,16 @@ Essa função é útil quando você deseja iniciar uma nova árvore do zero. Qua
 O uso dessa função pode ser o ponto de partida para criar uma nova árvore de alunos. Ela cria a base vazia na qual os alunos serão inseridos posteriormente. Portanto, quando você desejar criar uma nova árvore, pode chamar **`initialize_tree`** para obter uma árvore vazia e, em seguida, começar a adicionar alunos a partir daí.
 
 3. ### free_tree
+
+```c
+void free_tree(Node* root) {
+  if (root == NULL) return;
+
+  free_tree(root->left);
+  free_tree(root->right);
+  free(root);
+}
+```
 
 A função **`free_tree`** é uma função de liberação de memória que é usada para desalocar todos os nós de uma árvore binária de alunos (ou subárvore) e liberar a memória associada a eles. Essa função é recursiva e é usada para garantir que todos os nós da árvore sejam liberados corretamente, incluindo os nós filhos.
 
@@ -481,6 +500,10 @@ Essa função é fundamental para a liberação de recursos após o uso de uma �
 
 4. ### initialize_random_seed
 
+```c
+void initialize_random_seed() { srand(time(NULL)); }
+```
+
 A função **`initialize_random_seed`** é responsável por inicializar a semente do gerador de números pseudoaleatórios. Nesse caso, ela utiliza a função **`srand`** da biblioteca padrão C para definir a semente do gerador de números pseudoaleatórios com base no tempo atual. Aqui está como a função funciona:
 
 - **`srand`** é uma função que recebe um valor inteiro (semente) como argumento. Essa semente é usada pelo gerador de números pseudoaleatórios para iniciar sua sequência de números.
@@ -492,6 +515,15 @@ A função **`initialize_random_seed`** é responsável por inicializar a sement
 Essa função é frequentemente usada para inicializar a semente do gerador de números pseudoaleatórios quando se deseja obter sequências de números aleatórios diferentes em diferentes execuções do programa. Ela é especialmente útil em casos nos quais a aleatoriedade é necessária, como para criar dados de teste ou simulações.
 
 5. ### generate_registration
+
+```c
+int generate_registration() {
+  int lower_bound = 10000;
+  int upper_bound = 99999;
+  int random_number = (rand() % (upper_bound - lower_bound + 1)) + lower_bound;
+  return random_number;
+}
+```
 
 A função generate_registration é usada para gerar números de registro aleatórios que normalmente têm cinco dígitos. Aqui está uma explicação passo a passo de como ela funciona:
 
