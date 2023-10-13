@@ -436,6 +436,11 @@ O cabeçalho do arquivo [tree.functions.c](https://github.com/HermanoCastro65/cr
 
 Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as funções implementadas em [tree.functions.c](https://github.com/HermanoCastro65/crud-language-course-in-c/blob/creating-documentation/tree.functions.c) tenham acesso a todas as funcionalidades e estruturas definidas no projeto. Isso permite que o código seja organizado em módulos e use as bibliotecas padrão sempre que necessário para o funcionamento correto do programa.
 
+- **Functions**
+
+* [is_empty](#is_empty)
+* [initialize_tree](#initialize_tree)
+
 1. ### is_empty
 A função is_empty é uma função simples que verifica se a árvore (ou subárvore) representada por um nó é vazia, ou seja, se não contém nenhum aluno. A função recebe como argumento um ponteiro para um nó (do tipo **`Node`**) e retorna um valor inteiro (int). O funcionamento da função é explicado da seguinte forma:
 
@@ -447,3 +452,10 @@ A função is_empty é uma função simples que verifica se a árvore (ou subár
 
 Essa função é útil para verificar rapidamente se uma árvore está vazia ou não, o que pode ser útil em diversas operações de gerenciamento de árvores, como inserção, exclusão, pesquisa e listagem de elementos. Ela fornece uma verificação simples e eficiente para essa condição.
 
+2. ### initialize_tree
+
+A função **`initialize_tree`** é uma função que cria e retorna uma árvore (ou subárvore) vazia. Ela não aloca memória para nenhum nó e, portanto, retorna **`NULL`** para indicar que a árvore está vazia.
+
+Essa função é útil quando você deseja iniciar uma nova árvore do zero. Quando a árvore é inicializada, ela não contém nenhum aluno. À medida que novos alunos são adicionados à árvore, a estrutura da árvore é construída dinamicamente por meio das funções de inserção, como **`include_student`**. Portanto, a árvore começa como uma raiz nula.
+
+O uso dessa função pode ser o ponto de partida para criar uma nova árvore de alunos. Ela cria a base vazia na qual os alunos serão inseridos posteriormente. Portanto, quando você desejar criar uma nova árvore, pode chamar **`initialize_tree`** para obter uma árvore vazia e, em seguida, começar a adicionar alunos a partir daí.
