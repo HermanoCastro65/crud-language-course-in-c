@@ -81,6 +81,8 @@ root = delete_student(root, "Alicia");
 * [Functions](#Functions)
 * [Tests](#Tests)
 * [File](#File)
+* [Application](#Application)
+* [Main](#Main)
 
 ## Mocks
 - **mocks.h**
@@ -996,3 +998,441 @@ Este código lê informações de um arquivo chamado "students.txt" e insere ess
 - Por fim, a função imprime uma mensagem de sucesso e aguarda uma entrada do usuário antes de retornar a raiz da árvore.
 
 Este código lê um arquivo de texto com informações de alunos, insere essas informações em uma árvore binária de busca e verifica se a árvore está em ordem alfabética. Isso permite que o sistema carregue dados de alunos a partir de um arquivo de texto.
+
+## Application
+
+O arquivo [app.h](https://github.com/HermanoCastro65/crud-language-course-in-c/blob/creating-documentation/app.h) é um arquivo de cabeçalho que contém as declarações de funções e as inclusões de outros arquivos necessários para a aplicação principal. Vou explicar cada parte do arquivo:
+
+- **`#include "constants.h"`** : Inclui o arquivo de cabeçalho "constants.h" que contém definições de constantes, como os tipos de níveis de classe e idiomas.
+
+- **`#include "tree.h"`** : Inclui o arquivo de cabeçalho "tree.h," que contém a definição da estrutura da árvore e as funções relacionadas a ela.
+
+- **`#include "file.h"`** : Inclui o arquivo de cabeçalho "file.h," que contém funções relacionadas à leitura e escrita de arquivos.
+
+- **`void clear_console(void);`** : Declaração da função **`clear_console`**, que é responsável por limpar a tela do console. Essa função pode ser usada para melhorar a apresentação na interface do usuário.
+
+- **`int run_all_tests(char* test_mode);`** : Declaração da função **`run_all_tests`**, que executa todos os testes definidos na aplicação. Ela recebe um argumento **`test_mode`** para controlar o modo de execução dos testes.
+
+- **`void main_menu(void);`** : Declaração da função **`main_menu`**, que representa o menu principal da aplicação. Essa função é responsável por exibir as opções disponíveis ao usuário e direcioná-lo para diferentes partes da aplicação.
+
+- **`Student add_student_menu(void);`** : Declaração da função **`add_student_menu`**, que é responsável por coletar informações do usuário para adicionar um novo aluno à árvore. Ela retorna uma estrutura **`Student preenchida com os dados fornecidos pelo usuário.
+
+- **`char* chose_language_menu(void);`**: Declaração da função **`chose_language_menu`**, que exibe um menu para permitir que o usuário escolha um idioma a partir das opções definidas e retorna o idioma escolhido.
+
+Essas declarações de função e inclusões de cabeçalho são importantes para a organização e funcionamento da aplicação principal. Elas fornecem acesso às funcionalidades da árvore, aos testes e à manipulação de arquivos, além de definir a estrutura geral do menu da aplicação.
+
+O início do arquivo app.c inclui várias diretivas de pré-processador, incluindo inclusões de cabeçalho e definições de bibliotecas padrão. Vou explicar cada parte:
+
+- **`#include <stdio.h>`** : Isso inclui o cabeçalho da biblioteca padrão de E/S em C. Ele é usado para acessar funções de entrada e saída, como **`printf`** e **`scanf`**, que permitem que o programa interaja com o usuário e exiba mensagens no console.
+
+- **`#include <stdlib.h>`** : Isso inclui o cabeçalho da biblioteca padrão em C que fornece funções para alocação de memória, conversões numéricas, geração de números aleatórios e outras operações de sistema. Essa biblioteca é usada para funções como **`malloc`**, **`free`** e **`exit`**.
+
+- **`#include <string.h>`** : Isso inclui o cabeçalho da biblioteca padrão de manipulação de strings em C. Ele fornece funções para operações de strings, como **`strncpy`** e **`strcmp`**. Essas funções são usadas para manipular cadeias de caracteres (strings) na aplicação.
+
+- **`#include "app.h"`**: Isso inclui o arquivo de cabeçalho "app.h," que contém as declarações de funções, estruturas e inclusões de cabeçalho específicas para a aplicação principal. O arquivo "app.h" descreve as funcionalidades do programa e como ele interage com outras partes do código.
+
+Essas inclusões de cabeçalho e definições de bibliotecas são essenciais para o funcionamento da aplicação. Elas fornecem acesso a funcionalidades fundamentais, como entrada/saída, alocação de memória, manipulação de strings e definições específicas da aplicação que são necessárias para a implementação da lógica do programa.
+
+- **Applications:**
+
+* [run_all_tests](#run_all_tests)
+* [main_menu](#main_menu)
+* [add_student_menu](#add_student_menu)
+* [chose_language_menu](#chose_language_menu)
+
+1. ### run_all_tests
+
+```c
+int run_all_tests(char* test_mode) {
+  printf("\nRUNING ALL TESTS: \n\n");
+  run_test("constants", test_constants(), test_mode);
+  run_test("is_empty()", test_is_empty(), test_mode);
+  run_test("initialize_tree()", test_initialize_tree(), test_mode);
+  run_test("free_tree()", test_free_tree(), test_mode);
+  run_test("generate_registration()", test_generate_registration(), test_mode);
+  run_test("create_node()", test_create_node(), test_mode);
+  run_test("include_student()", test_include_student(), test_mode);
+  run_test("list_all_students()", test_list_all_students(), test_mode);
+  run_test("search_student()", test_search_student(), test_mode);
+  run_test("show_student()", test_show_student(), test_mode);
+  run_test("show_students_by_language()", test_show_students_by_language(), test_mode);
+  run_test("delete_student()", test_delete_student(), test_mode);
+  run_test("change_student()", test_change_student(), test_mode);
+  if(!test_mode) clear_console(); 
+  
+  return 0;
+}
+```
+
+A função **`run_all_tests`** é responsável por executar uma série de testes da aplicação. Aqui está uma breve explicação do seu funcionamento:
+
+- Ela recebe um argumento **`test_mod`**e, que determina se os resultados dos testes serão exibidos no console ou não.
+
+- Em seguida, ela imprime uma mensagem informando que todos os testes estão sendo executados.
+
+- Chama a função **`run_test`** para cada teste, fornecendo o nome do teste, a função do teste e o **`test_mode`** como argumentos. Essa função é usada para executar testes individuais.
+
+- A função **`run_test`** imprime se o teste passou ou falhou, com base no valor retornado pela função de teste.
+
+- Após executar todos os testes, a função verifica se **`test_mode`** é nulo (ou seja, se não estamos em modo de teste interativo) e, se for esse o caso, chama a função **`clear_console`** para limpar o console, removendo as saídas dos testes.
+
+- Finalmente, a função retorna 0 para indicar que todos os testes foram concluídos.
+
+Essa função é usada para automatizar a execução de testes unitários e exibir os resultados, facilitando a verificação da integridade do código. O **`test_mode`** permite que os testes sejam executados sem interação do usuário (modo de teste) ou com interação (modo interativo), dependendo de como o programa é executado.
+
+2. ### main_menu
+
+```c
+void main_menu() {
+  Node* students = initialize_tree();
+  students = read_file_and_insert_into_tree(students);
+
+  int option = 0, get_out = 0;
+
+  do {
+    clear_console();
+
+    printf("\n(1) List students");
+    printf("\n(2) Add student");
+    printf("\n(3) Change student");
+    printf("\n(4) Consult student");
+    printf("\n(5) Delete student");
+    printf("\n(6) Show students by language");
+    printf("\n(7) Exit");
+    printf("\n\nChoose option: ");
+    scanf("%d", &option);
+
+    switch (option) {
+      case 1:
+        clear_console();
+        printf("\nREGISTERED STUDENTS: \n\n");
+        list_all_students(students);
+        getch();
+        break;
+      case 2:
+        printf("\nADD NEW STUDENT: \n\n");
+        Student new_student = add_student_menu();
+        if (new_student.registration) {
+          students = include_student(students, new_student);
+          printf("\nSTUDENT SUCCESSFULY INCLUDED \n\n");
+        }
+        getch();
+        break;
+      case 3:
+      	clear_console();
+        printf("\nCHANGE STUDENT: \n\n");
+        print_student_names(students);
+        char change_student_name[25];
+        printf("\nChange student by name: ");
+        scanf("%s", &change_student_name);
+        clear_console();
+        printf("\nSTUDENT: \n\n");
+        Node* consult_change_student = search_student(students, change_student_name);
+        if (consult_change_student) {
+          show_student(consult_change_student->student);
+          printf("\nCHANGE STUDENT \n\n");
+          getch();
+          int current_registration = consult_change_student->student.registration;
+          Student change_student_informations = add_student_menu();
+          if (change_student_informations.registration) {
+          	change_student_informations.registration = current_registration;
+            students = change_student(students, consult_change_student,
+                                      change_student_informations);
+            printf("\nSTUDENT SUCCESSFULY CHANGED \n\n");
+          }
+        } else
+          printf("NOT FOUND ");
+        getch();
+        break;
+      case 4:
+        clear_console();
+        printf("\nCONSULT STUDENT: \n\n");
+        print_student_names(students);
+        char student_name[25];
+        printf("\nSearch student by name: ");
+        scanf("%s", &student_name);
+        clear_console();
+        printf("\nSTUDENT: \n\n");
+        Node* consult_student = search_student(students, student_name);
+        if (consult_student)
+          show_student(consult_student->student);
+        else
+          printf("NOT FOUND ");
+        getch();
+        break;
+      case 5:
+        clear_console();
+        printf("\nDELETE STUDENT: \n\n");
+        print_student_names(students);
+        char delete_student_name[25];
+        printf("\nDelete student by name: ");
+        scanf("%s", &delete_student_name);
+        Node* search_delete_student = search_student(students, delete_student_name);
+        if(search_delete_student) {
+          students = delete_student(students, delete_student_name);
+          printf("\nSTUDENT DELETED \n\n");
+        }
+        else
+          printf("\nNOT FOUND ");
+        getch();
+        break;
+      case 6:
+        clear_console();
+        printf("\nSHOW STUDENTS BY LANGUAGE: \n\n");
+        printf("\nSearch students by language: ");
+        char* language = chose_language_menu();
+        if (language) show_students_by_language(students, language);
+        getch();
+        break;
+      case 7:
+        printf("\nEXIT\n\n");
+        get_out = 1;
+        break;
+      default:
+        printf("\nINVALID OPTION! \n");
+        getch();
+        get_out = 0;
+    }
+  } while (!get_out);
+}
+```
+
+A função **`main_menu`** é o núcleo da interação com o usuário do programa e controla o menu principal da aplicação. Aqui está uma breve explicação do seu funcionamento:
+
+- Ela começa inicializando uma árvore de estudantes (**`students`**) e em seguida lê os dados de um arquivo e os insere na árvore utilizando a função **`read_file_and_insert_into_tree`**.
+
+- Em seguida, entra em um loop que exibe as opções do menu e lê a opção escolhida pelo usuário.
+
+- Dependendo da opção escolhida, o programa executa as seguintes ações:
+
+1. **`List students (1)`** : Lista todos os estudantes registrados.
+2. **`Add student (2)`** : Permite ao usuário adicionar um novo estudante.
+3. **`Change student (3)`** : Permite ao usuário alterar informações de um estudante existente.
+4.**`Consult student (4)`** : Permite ao usuário procurar informações sobre um estudante por nome.
+5. **`Delete student (5)`** : Permite ao usuário excluir um estudante por nome.
+6. **`Show students by language (6)`** : Permite ao usuário listar estudantes com base no idioma escolhido.
+7. **`Exit (7)`** : Encerra o programa.
+
+- O programa continua executando até que o usuário escolha a opção "Exit".
+
+- Cada opção do menu executa a ação apropriada e interage com o usuário para coletar informações necessárias, como nome do estudante, informações de alteração, idioma, etc.
+
+- Após a conclusão da ação escolhida, o programa geralmente exibe uma mensagem informativa, aguarda um pressionamento de tecla (**`getch`**) e, em seguida, volta ao menu principal.
+
+Essa função é responsável por fornecer a interface de linha de comando para o programa, permitindo ao usuário realizar operações em uma coleção de estudantes e visualizar informações sobre eles.
+
+3. ### add_student_menu
+
+```c
+Student add_student_menu() {
+  Student new_student;
+
+  int option = 0, get_out = 0, get_out_language = 0, get_out_level = 0, i = 0,
+      language = 0, level = 0;
+
+  do {
+    clear_console();
+
+    get_out_language = 0;
+    get_out_level = 0;
+
+    printf("\nName: ");
+    scanf("%s", &new_student.name);
+
+    printf("\nAvailable languages: ");
+    for (i = 0; i < 4; i++) printf("\n(%d) %s", i + 1, language_types[i]);
+    printf("\n(5) Cancel\n");
+    printf("\nLanguage: ");
+    scanf("%d", &language);
+
+    switch (language) {
+      case 1:
+        strncpy(new_student.language, language_types[0],
+                sizeof(new_student.language));
+        break;
+      case 2:
+        strncpy(new_student.language, language_types[1],
+                sizeof(new_student.language));
+        break;
+      case 3:
+        strncpy(new_student.language, language_types[2],
+                sizeof(new_student.language));
+        break;
+      case 4:
+        strncpy(new_student.language, language_types[3],
+                sizeof(new_student.language));
+        break;
+      case 5:
+        printf("\nOPERATION CANCELED \n");
+        new_student.registration = 0;
+        return new_student;
+      default:
+        printf("\nINVALID OPTION! \n");
+        get_out_language = 1;
+        getch();
+    }
+
+    if (!get_out_language) {
+      printf("\nClass level: ");
+      for (i = 0; i < 3; i++) printf("\n(%d) %s", i + 1, class_level_types[i]);
+      printf("\n(4) Cancel\n");
+      printf("\nLevel: ");
+      scanf("%d", &level);
+
+      switch (level) {
+        case 1:
+          strncpy(new_student.class_level, class_level_types[0],
+                  sizeof(new_student.class_level));
+          break;
+        case 2:
+          strncpy(new_student.class_level, class_level_types[1],
+                  sizeof(new_student.class_level));
+          break;
+        case 3:
+          strncpy(new_student.class_level, class_level_types[2],
+                  sizeof(new_student.class_level));
+          break;
+        case 4:
+          printf("\nOPERATION CANCELED \n");
+          new_student.registration = 0;
+          return new_student;
+        default:
+          printf("\nINVALID OPTION! \n");
+          get_out_level = 1;
+          getch();
+      }
+    }
+
+    if (!get_out_language && !get_out_level) {
+      new_student.registration = generate_registration();
+      return new_student;
+    }
+
+  } while (!get_out_language || !get_out_level);
+}
+```
+
+A função **`add_student_menu`** permite ao usuário inserir informações sobre um novo estudante. Aqui está uma breve explicação de como funciona:
+
+- Ela declara uma estrutura **`Student`** chamada **`new_student`** para armazenar as informações do novo estudante.
+
+- Inicializa variáveis para controlar o fluxo do menu, como **`option`**, **`get_out`**, **`get_out_language`**, **`get_out_level`**, **`i`**, **`language`**, e **`level`**.
+
+- Entra em um loop que exibe o menu para coletar informações sobre o novo estudante.
+
+- O usuário é solicitado a inserir o nome do estudante.
+
+- Em seguida, o usuário é solicitado a escolher um idioma a partir de uma lista de idiomas disponíveis (definidos em **`language_types`**).
+
+- Dependendo da escolha do usuário, o programa atribui o idioma escolhido à estrutura **`new_student`**.
+
+- Se o usuário escolher a opção "Cancelar" (opção 5), a função exibirá uma mensagem informando que a operação foi cancelada e definirá o campo **`registration`** de **`new_student`** como 0, indicando que a operação foi cancelada.
+
+- Se o usuário escolher uma opção inválida para o idioma, a função informa que a opção é inválida, define **`get_out_language`** como 1 e espera que o usuário pressione uma tecla antes de continuar.
+
+- Após coletar o idioma, o programa solicita ao usuário que escolha o nível de classe do estudante a partir de uma lista de níveis disponíveis (definidos em **`class_level_types`**).
+
+- Dependendo da escolha do usuário, o programa atribui o nível de classe escolhido à estrutura **`new_student`**.
+
+- Se o usuário escolher a opção "Cancelar" para o nível, a função exibirá uma mensagem informando que a operação foi cancelada e definirá o campo **`registration`** de **`new_student`** como 0.
+
+- Se o usuário escolher uma opção inválida para o nível, a função informa que a opção é inválida, define **`get_out_level`** como 1 e espera que o usuário pressione uma tecla antes de continuar.
+
+- Se o usuário tiver escolhido um idioma e um nível válidos (ou seja, **`get_out_language`** e **`get_out_level`** são ambos 0), a função gera um número de registro aleatório usando **`generate_registration`** e atribui o resultado ao campo **`registration`** de **`new_student`**.
+
+- Finalmente, a função retorna a estrutura **`new_student`**, que agora contém as informações do novo estudante.
+
+Essa função é projetada para guiar o usuário na entrada das informações do estudante, garantindo que o usuário escolha opções válidas para idioma e nível e permitindo que o usuário cancele a operação a qualquer momento.
+
+4. ### chose_language_menu
+
+```c
+char* chose_language_menu() {
+  int language = 0, get_out = 0, i = 0;
+
+  for (i = 0; i < 4; i++) printf("\n(%d) %s", i + 1, language_types[i]);
+  printf("\n\nLanguage: ");
+  scanf("%d", &language);
+
+  switch (language) {
+    case 1:
+      clear_console();
+      printf("\nLANGUAGE: %s\n\n", language_types[0]);
+      return language_types[0];
+      break;
+    case 2:
+      clear_console();
+      printf("\nLANGUAGE: %s\n\n", language_types[1]);
+      return language_types[1];
+      break;
+    case 3:
+      clear_console();
+      printf("\nLANGUAGE: %s\n\n", language_types[2]);
+      return language_types[2];
+      break;
+    case 4:
+      clear_console();
+      printf("\nLANGUAGE: %s\n\n", language_types[3]);
+      return language_types[3];
+      break;
+    default:
+      printf("\nINVALID OPTION! \n");
+      return NULL;
+  }
+}
+```
+
+A função **`chose_language_menu`** permite ao usuário escolher um idioma a partir de uma lista de idiomas disponíveis (definidos em **`language_types`**). Aqui está uma breve explicação de como funciona:
+
+- A função inicializa variáveis, como **`language`**, **`get_out`**, e **`i`**.
+
+- Em um loop, a função exibe a lista de idiomas disponíveis, numerados de 1 a 4 (com base na posição no array **`language_types`**).
+
+- O usuário é solicitado a escolher um idioma digitando o número correspondente.
+
+- Dependendo da escolha do usuário, o programa limpa o console (chamando a função **`clear_console`**) para melhorar a apresentação e exibe uma mensagem informando o idioma escolhido. Em seguida, a função retorna o nome do idioma escolhido.
+
+- Se o usuário escolher uma opção inválida, a função exibe a mensagem "OPÇÃO INVÁLIDA!" e retorna **`NULL`** para indicar que a seleção foi inválida.
+
+Essa função permite ao usuário escolher um idioma disponível e retorna o nome do idioma escolhido ou **`NULL`** em caso de seleção inválida.
+
+## Main
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "app.h"
+
+int main(int argc, char* argv[]) {
+  if (argv[1])
+    if (strcmp(argv[1], "-test") != 0) {
+      printf("\n\nINVALID ARGUMENT: '%s' \ntry '-test' for test mode\n\n",
+             argv[1]);
+      exit(1);
+    }
+
+  if (run_all_tests(argv[1])) exit(1);
+
+  main_menu();
+
+  return 0;
+}
+```
+
+A função **`main`** é a função principal do programa. Aqui está uma breve explicação de como ela funciona:
+
+1. Ela recebe dois argumentos como entrada: **`int argc`** e **`char* argv[]`**. Esses argumentos são comuns em programas C e C++ e representam o número de argumentos passados para o programa e um array de strings contendo os argumentos em si.
+
+2. O programa começa verificando se o primeiro argumento (**`argv[1]`**) foi fornecido. Isso é feito com a condição **`if (argv[1])`**. Se **`argv[1]`** for diferente de nulo (ou seja, se um argumento foi fornecido), o programa verifica se o argumento é igual a **`"-test"`** usando a função **`strcmp`**. Se o argumento não for igual a **`"-test"`**, o programa exibe uma mensagem de erro indicando que o argumento é inválido e como usar o programa corretamente (no modo de teste) e encerra com um código de saída 1.
+
+3. Se o programa não entrar na primeira condição (ou seja, se o argumento for nulo ou igual a **`"-test"`**), ele avança para a próxima etapa.
+
+4. O programa chama a função **`run_all_tests(argv[1])`**. Esta função é responsável por executar todos os testes e verificar se eles passam com sucesso. Se algum teste falhar, a função **`run_all_tests`** retornará um valor diferente de zero e o programa principal encerrará com um código de saída 1, indicando que ocorreu um erro.
+
+5. Se todos os testes passarem com sucesso, o programa chama a função **`main_menu()`**. Esta função inicia o menu principal do programa, que permite ao usuário executar várias operações, como listar estudantes, adicionar estudantes, alterar estudantes, consultar estudantes, excluir estudantes, mostrar estudantes por idioma ou sair do programa.
+
+6. Após o término do **`main_menu()`**, o programa retorna 0 para indicar que a execução foi concluída com sucesso.
+
+Em resumo, o **`main`** é responsável por verificar os argumentos de linha de comando, executar testes se necessário e iniciar o menu principal do programa. Se tudo correr bem, o programa funcionará normalmente; caso contrário, ele retornará códigos de saída diferentes de zero para indicar problemas.
