@@ -24,14 +24,14 @@ git clone https://github.com/HermanoCastro65/crud-language-course-in-c.git
 ```
 
 2. Compile o código-fonte:
-Navegue até o diretório onde você clonou o repositório e compile o código. Suponhamos que o código-fonte esteja em um arquivo chamado main.c.
+Navegue até o diretório onde você clonou o repositório e compile o código.
 
 ```shell
 cd crud-language-course-in-c
 gcc app.c constants.c file.c main.c mocks.c tree.functions.c tree.tests.c -o language_course_management_system 
 ```
 
-Isso compilará o código e gerará um executável chamado system.
+Isso compilará o código e gerará um executável chamado language_course_management_system.
 
 3. Execute o programa:
 
