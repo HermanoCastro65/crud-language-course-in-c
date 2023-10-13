@@ -77,7 +77,7 @@ root = delete_student(root, "Alicia");
 ## Índice
 * [Mocks](#Mocks)
 * [Constants](#Constants)
-* [Tree.h](#Tree.h)
+* [Tree.h](#Tree)
 * [Functions](#Functions)
 * [Tests](#Tests)
 
@@ -310,7 +310,7 @@ Essas constantes são declaradas como globais e podem ser acessadas em qualquer 
 
 Note que as constantes são declaradas como ponteiros para strings, e as strings são armazenadas na memória como constantes de caracteres. Portanto, essas constantes não podem ser modificadas em tempo de execução, garantindo que seus valores permaneçam fixos durante a execução do programa.
 
-## Tree.h
+## Tree
 
 ```c
 typedef struct student {
