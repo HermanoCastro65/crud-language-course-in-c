@@ -80,6 +80,7 @@ root = delete_student(root, "Alicia");
 * [Tree](#Tree)
 * [Functions](#Functions)
 * [Tests](#Tests)
+* [File](#File)
 
 ## Mocks
 - **mocks.h**
@@ -914,3 +915,84 @@ O arquivo [tree.tests.c](https://github.com/HermanoCastro65/crud-language-course
 15. **`test_change_student`**: Testa a função **`change_student`** para verificar se ela atualiza corretamente os campos de um aluno na árvore.
 
 Essas funções de teste ajudam a garantir que as funções da árvore estejam funcionando conforme o esperado e fornecem feedback sobre o sucesso ou a falha de cada função.
+
+## File
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "constants.h"
+#include "tree.h"
+
+Node* read_file_and_insert_into_tree(Node* root) {
+  FILE* file = fopen("students.txt", "r");
+  if (file == NULL) {
+    printf("Unable to open the file.\n");
+    return root;
+  }
+
+  char line[100];
+  Student student;
+
+  while (fgets(line, sizeof(line), file) != NULL) {
+    line[strcspn(line, "\n")] = '\0';
+
+    strncpy(student.name, line, sizeof(student.name));
+
+    student.registration = generate_registration();
+
+    if (fgets(line, sizeof(line), file) != NULL) {
+      line[strcspn(line, "\n")] = '\0';
+      strncpy(student.class_level, line, sizeof(student.class_level));
+    }
+    if (fgets(line, sizeof(line), file) != NULL) {
+      line[strcspn(line, "\n")] = '\0';
+      strncpy(student.language, line, sizeof(student.language));
+    }
+
+    root = include_student(root, student);
+  }
+
+  fclose(file);
+
+  if (!is_tree_alphabetical(root)) exit(1);
+  printf("SYSTEM LOADED SUCCESSFULLY\n");
+  getchar();
+  return root;
+}
+```
+
+Este código lê informações de um arquivo chamado "students.txt" e insere essas informações em uma árvore binária de busca. Vou explicar cada parte do código:
+
+- **`#include <stdio.h>`** : Inclui a biblioteca padrão de E/S (entrada/saída) em C para usar funções relacionadas à leitura e gravação de arquivos.
+
+- **`#include <stdlib.h>`** : Inclui a biblioteca padrão em C, que contém funções para alocação dinâmica de memória e outras operações.
+
+- **`#include <string.h>`** : Inclui a biblioteca padrão em C para operações de strings, como **`strncpy`** e **`strcspn`**.
+
+- **`#include "constants.h"`** : Inclui o arquivo de cabeçalho "constants.h", que contém as definições de constantes, como os tipos de níveis de classe e idiomas.
+
+- **`#include "tree.h"`** : Inclui o arquivo de cabeçalho "tree.h", que contém a definição da estrutura da árvore e as funções relacionadas a ela.
+
+- **`Node* read_file_and_insert_into_tree(Node* root)`** : Esta é a função principal que lê o arquivo "students.txt" e insere os alunos na árvore. Ela recebe um ponteiro para a raiz da árvore como entrada e retorna a raiz da árvore após a inserção.
+
+- **`FILE* file = fopen("students.txt", "r");`** : Abre o arquivo "students.txt" em modo de leitura ("r"). Se o arquivo não puder ser aberto, exibe uma mensagem de erro e retorna a raiz da árvore inalterada.
+
+- **`char line[100];`** : Declara um array de caracteres chamado "line" com espaço para 100 caracteres. Isso será usado para armazenar as linhas lidas do arquivo.
+
+- **`Student student;`** : Declara uma variável do tipo **`Student`** chamada "student" para armazenar as informações lidas do arquivo.
+
+- O loop **`while (fgets(line, sizeof(line), file) != NULL)`** lê cada linha do arquivo usando a função **`fgets`**. A função **`strcspn(line, "\n")`** remove o caractere de nova linha (se existir) no final de cada linha.
+
+- Os dados lidos do arquivo são copiados para a estrutura "student" usando a função **`strncpy`**. Isso inclui o nome, número de registro, nível de classe e idioma.
+
+- A função **`include_student`** é usada para inserir o aluno na árvore, com base no nome do aluno.
+
+- Após a conclusão da leitura do arquivo e da inserção dos alunos na árvore, o arquivo é fechado com **`fclose(file)`**.
+
+- A função verifica se a árvore está em ordem alfabética usando a função **`is_tree_alphabetical`**. Se não estiver, o programa é encerrado com **`exit(1)`**.
+
+- Por fim, a função imprime uma mensagem de sucesso e aguarda uma entrada do usuário antes de retornar a raiz da árvore.
+
+Este código lê um arquivo de texto com informações de alunos, insere essas informações em uma árvore binária de busca e verifica se a árvore está em ordem alfabética. Isso permite que o sistema carregue dados de alunos a partir de um arquivo de texto.
