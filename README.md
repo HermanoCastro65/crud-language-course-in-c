@@ -449,6 +449,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [search_student](#search_student)
 * [show_student](#show_student)
 * [show_students_by_language](#show_students_by_language)
+* [find_min](#find_min)
 
 1. ### is_empty
 
@@ -765,3 +766,28 @@ A função **`show_students_by_language`** percorre uma árvore de alunos (repre
 - **`show_students_by_language(students->right, language);`** : Após exibir as informações do aluno, a função é chamada recursivamente para percorrer o ramo direito da árvore (alunos com nomes "maiores" de acordo com a ordem alfabética), permitindo que a busca continue na parte direita da árvore.
 
 A função **`show_students_by_language`** é útil para localizar e exibir informações específicas dos alunos com base em critérios de idioma. Por exemplo, ao chamar **`show_students_by_language(root, "English");`**, a função exibirá os detalhes de todos os alunos que têm "English" como seu idioma na árvore de alunos.
+
+12. ### find_min
+
+```c
+Node* find_min(Node* node) {
+  while (node->left != NULL) {
+    node = node->left;
+  }
+  return node;
+}
+```
+
+A função **`find_min`** é usada para encontrar o nó com o valor mínimo (o aluno com o nome mais baixo em ordem alfabética) em uma árvore binária de busca. O funcionamento da função é explicado da seguinte forma:
+
+- A função recebe um nó da árvore como argumento, que é onde a busca começa.
+
+- Enquanto o nó da esquerda do nó atual não for nulo, o loop continua. Isso ocorre porque, em uma árvore binária de busca, o nó mais à esquerda contém o valor mínimo.
+
+- Dentro do loop, o nó é atualizado para o seu filho esquerdo, o que move a busca para o próximo nó à esquerda na árvore.
+
+- O loop continua até que o nó à esquerda seja nulo, indicando que o nó atual é o nó com o valor mínimo, pois não há mais filhos à esquerda.
+
+- Quando o nó com o valor mínimo é encontrado, a função retorna esse nó.
+
+Em resumo, a função **`find_min`** percorre a árvore binária de busca da raiz até o nó mais à esquerda, encontrando assim o nó com o valor mínimo. Essa função é comumente usada em operações de exclusão em árvores binárias de busca para encontrar o nó que deve ser removido quando não possui filhos à esquerda.
