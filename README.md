@@ -77,7 +77,7 @@ root = delete_student(root, "Alicia");
 ## Índice
 * [Mocks](#Mocks)
 * [Constants](#Constants)
-* [Tree.h](#Tree)
+* [Tree](#Tree)
 * [Functions](#Functions)
 * [Tests](#Tests)
 
