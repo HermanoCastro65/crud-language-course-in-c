@@ -444,6 +444,7 @@ Essas inclusões de bibliotecas e cabeçalhos são necessárias para que as fun�
 * [initialize_random_seed](#initialize_random_seed)
 * [generate_registration](#generate_registration)
 * [list_all_students](#list_all_students)
+* [create_node](#create_node)
 
 1. ### is_empty
 
@@ -571,3 +572,51 @@ A função **`list_all_students`** é uma função de percurso em ordem que perc
 - O resultado é que a função percorre a árvore binária em ordem alfabética, começando pelos alunos com nomes mais à esquerda e terminando com os alunos com nomes mais à direita.
 
 Essa função é útil para listar todos os alunos em ordem alfabética, permitindo que sejam apresentados de forma organizada e legível. Ela é uma implementação do percurso em ordem de uma árvore binária de pesquisa.
+
+7. ### create_node
+
+```c
+Node* create_node(Student student, Node* left, Node* right) {
+  Node* new_node = (Node*)malloc(sizeof(Node));
+  if (!new_node) {
+    perror("Memory allocation error");
+    exit(1);
+  }
+
+  Student new_student;
+
+  new_student.registration = student.registration;
+  strncpy(new_student.name, student.name, sizeof(new_student.name));
+  strncpy(new_student.class_level, student.class_level,
+          sizeof(new_student.class_level));
+  strncpy(new_student.language, student.language, sizeof(new_student.language));
+
+  new_node->student = new_student;
+  new_node->left = left;
+  new_node->right = right;
+
+  return new_node;
+}
+```
+
+A função **`create_node`** é responsável por alocar memória para um novo nó em uma árvore binária de alunos (**`Node`**) e preenchê-lo com os dados do aluno (**`Student`**) fornecidos. Aqui está uma explicação passo a passo de como ela funciona:
+
+- A função recebe três argumentos:
+
+1. **`Student student`** : Um objeto **`Student`** contendo as informações do aluno que serão copiadas para o novo nó.
+2. **`Node* left`** : Um ponteiro para o nó filho à esquerda.
+3. **`Node* right`** : Um ponteiro para o nó filho à direita.
+
+- A função começa por alocar dinamicamente memória para um novo nó usando **`malloc(sizeof(Node))`**. Isso cria um novo nó do tipo **`Node`** na memória.
+
+- Após a alocação bem-sucedida, a função verifica se a alocação de memória foi bem-sucedida usando **`if (!new_node)`**. Se a alocação de memória falhar, a função imprime uma mensagem de erro usando **`perror`** e sai do programa com **`exit(1)`**.
+
+- A função cria um novo objeto **`Student chamado **`new_student.
+
+- Os campos do novo objeto **`new_student`** são preenchidos com os valores do aluno fornecido nos argumentos da função. Os campos são copiados usando a função **`strncpy`**. Isso garante que os campos do novo aluno sejam independentes dos campos originais e que não haja compartilhamento de memória.
+
+- O novo nó (**`new_node`**) é preenchido com o objeto **`new_student`** e os ponteiros para os nós filhos à esquerda e à direita (**`left`** e **`right`**).
+
+- A função retorna o novo nó criado, que agora faz parte da árvore binária de alunos.
+
+Essa função é comumente usada ao adicionar novos alunos à árvore binária. Ela garante que um novo nó seja alocado e preenchido corretamente com os dados do aluno, mantendo a estrutura da árvore organizada.
